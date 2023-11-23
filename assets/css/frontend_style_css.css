@@ -1,0 +1,12 @@
+.tabel_data_json tr td{
+  padding: 10px;
+  border:1px solid #ccc;
+}
+.td_tilte{
+border:0px solid #ccc;
+background-color: #1D2327;
+color:#fff;
+}
+.tabel_data_json{
+	margin-bottom: 20px;
+}
