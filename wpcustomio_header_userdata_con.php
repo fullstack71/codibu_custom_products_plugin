@@ -6,10 +6,8 @@ $meta_data = get_user_meta($current_user_id);
 
 $user = wp_get_current_user();
 
-foreach($user->roles as $role){
-    $role = $role;
-    break;
-}
+
+$role = reset($user->roles);
 if($role == "administrator"){
 $vin_car_number_json ='';
 //xoo_aff_number_nx1lj

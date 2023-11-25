@@ -244,10 +244,7 @@ function add_custom_user_fields($user) {
 	
 	
 	$meta_data = get_user_meta($user->ID);
-    foreach($user->roles as $role){
-        $role = $role;
-        break;
-    }
+    $role = reset($user->roles);
     if($role == 'administrator'){
 		$vin_car_number_json =  "";
 	}

@@ -3,21 +3,17 @@ defined('ABSPATH') || die ("You can't access this file directyly !");
 
 function add_this_vin_script_footer(){
     $user = wp_get_current_user();
-    $user_data = get_userdata($user->ID);
-    foreach($user->roles as $role){
-        $role = $role;
-        break;
-    }
+    $role = reset($user->roles);
     if($role == 'customer'){
         $parentDiv = 'display: inline-flex;';
-        $inputTxt = 'max-width: 202px;';
+        $inputTxt = 'max-width: 237px;';
         $inputbtn = 'margin-left: 5px;padding: 8px;';
         ?>
         <script>
             var vin_numbers = <?php echo json_encode(get_user_meta($user->ID, 'xoo_aff_text_05a5i', false)); ?>;
 
             vin_numbers = vin_numbers.map((element, index) => {
-                return '<div class="input-block" style="margin-bottom: 5px;<?php echo $parentDiv; ?>"> <input style="<?php echo $inputTxt; ?>" type="text" name="vin_number_update[]" value="'+element+'" class="form-control"><input style="<?php echo $inputbtn; ?>" type="button" class="remove-field" value="-"></div>';
+                return '<div class="input-block" style="margin-bottom: 5px;<?php echo $parentDiv; ?>"> <input style="<?php echo $inputTxt; ?>" type="text" name="vin_number_update[]" value="'+element+'" class="form-control" disabled></div>';
             });
             jQuery(document).ready(function() {
                 jQuery("#some_div").append(vin_numbers.toString().replaceAll(',', ''))
@@ -39,7 +35,9 @@ add_action('wp_footer', 'add_this_vin_script_footer');
 
 function userCarVinNumberOwnForm(){
     ?>
-
+    <p style="background-color: lightgrey;padding: 10px;">
+        <span style="margin-right: 20px;">Note:</span>To delete or update a  vin#, please <a href="https://freeoilchange.com/contacts">contact us</a>
+    </p>
     <table class="form-table">
         <tr>
             <th><label for="user_birthday">Car vin numbers</label></th>
@@ -100,23 +98,25 @@ function userCarVinNumberSave($userId) {
     if (!current_user_can('edit_user', $userId)) {
         return;
     }
-
     $carVinNumbers = get_user_meta($userId, 'xoo_aff_text_05a5i', false);
-    if ($_POST['vin_number_update'] != NULL){
-        $differences = array_diff($carVinNumbers, $_POST['vin_number_update']);
-        foreach ($differences as $difference){
-            delete_user_meta($userId,'xoo_aff_text_05a5i',$difference, false);
-        }
+    $current_hook = current_filter();
+    if($current_hook != 'woocommerce_update_customer') {
+        if ($_POST['vin_number_update'] != NULL) {
+            $differences = array_diff($carVinNumbers, $_POST['vin_number_update']);
+            foreach ($differences as $difference) {
+                delete_user_meta($userId, 'xoo_aff_text_05a5i', $difference, false);
+            }
 
-        $differences = array_diff($_POST['vin_number_update'], $carVinNumbers);
-        foreach ($differences as $difference){
-            add_user_meta($userId,'xoo_aff_text_05a5i',$difference, false);
+            $differences = array_diff($_POST['vin_number_update'], $carVinNumbers);
+            foreach ($differences as $difference) {
+                add_user_meta($userId, 'xoo_aff_text_05a5i', $difference, false);
+            }
+        } else {
+            foreach ($carVinNumbers as $carVinNumber) {
+                delete_user_meta($userId, 'xoo_aff_text_05a5i', $carVinNumber, false);
+            }
         }
-    } else {
-		foreach ($carVinNumbers as $carVinNumber){
-            delete_user_meta($userId,'xoo_aff_text_05a5i',$carVinNumber, false);
-        }
-	}
+    }
 	
 	if ($_POST['vin_number_add'] != NULL){
 		$differences = array_diff($_POST['vin_number_add'], $carVinNumbers);
