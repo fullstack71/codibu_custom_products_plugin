@@ -1,8 +1,10 @@
 <?php
 
 function codibu_wc_pip_before_body($type, $action, $document, $order){
-    echo '<h3>Car Info</h3>';
+
     if(!$order->id){
+        echo '<h3>Car Info</h3>';
+        echo '<h5>Vin# vin number<h5>';
         echo '<table style="width: 213%" border="1" class="tabel_data_json">
         <tbody>
             <tr>
@@ -62,7 +64,30 @@ function codibu_wc_pip_before_body($type, $action, $document, $order){
         </tbody>
     </table>';
     } else {
+        global $wpdb;
+        $sql = "SELECT *
+			FROM `".$wpdb->prefix."comments`
+			INNER JOIN `".$wpdb->prefix."commentmeta` ON `".$wpdb->prefix."comments`.`comment_ID` = `".$wpdb->prefix."commentmeta`.`comment_id`
+			WHERE `".$wpdb->prefix."comments`.`comment_post_ID` = '".$order->id."'
+			AND `".$wpdb->prefix."comments`.`comment_type` = 'order_note'
+			AND `".$wpdb->prefix."commentmeta`.`meta_key` = 'is_customer_note'
+			AND `".$wpdb->prefix."commentmeta`.`meta_value` = '1'
+			ORDER BY `".$wpdb->prefix."comments`.`comment_ID` DESC";
+        $comments = $wpdb->get_results($sql);
+
+        if(count($comments)>=1){
+            echo '<h3>Note</h3>';
+            echo '<ul>';
+            foreach($comments as $comment){
+                echo '<li>'.$comment->comment_content.'</li>';
+            }
+            echo '</ul>';
+        }
         $customer_user_id = get_post_meta($order->id, 'car_info', true);
+        $vin_number_meta_value = get_post_meta( $order->id, "Car Vin Number" );
+
+        echo '<h3>Car Info</h3>';
+        echo '<h5>Vin Number: ' .reset($vin_number_meta_value).'<h5>';
         echo $customer_user_id;
     }
 }

@@ -1,22 +1,22 @@
 <?php
 defined('ABSPATH') || die ("You can't access this file directyly !");
 if ($_GET['post'] != null && $_GET['action'] == "edit") {
-    global $wpdb;
-    $postmetas = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."postmeta WHERE post_id = ".$_GET['post']." AND meta_key = 'Car Vin Number'");
-?>
-<table class="form-table" style="margin-bottom: 10px;">
-    <tr>
-        <th><label for="user_birthday">Select car vin number</label></th>
-        <td>
-            <select name="vinNumber" id="vinNumber">
-                <?php foreach (get_user_meta($user_id, 'xoo_aff_text_05a5i', false) as $vin_number) { ?>
-                    <option value="<?php echo $vin_number ?>" <?php echo ($postmetas[0]->meta_value == $vin_number) ? 'selected' : ''; ?> ><?php echo $vin_number ?></option>
+    $vin_number_meta_value= get_post_meta( get_the_ID(), "Car Vin Number" );
+    $vin_number_meta_value = reset($vin_number_meta_value);
+    ?>
+    <table class="form-table" style="margin-bottom: 10px;">
+        <tr>
+            <th><label for="user_birthday">Select car vin number</label></th>
+            <td>
+                <select name="vinNumber" id="vinNumber">
+                    <?php foreach (get_user_meta($user_id, 'xoo_aff_text_05a5i', false) as $vin_number) { ?>
+                        <option value="<?php echo $vin_number ?>" <?php echo ($vin_number_meta_value == $vin_number) ? 'selected' : ''; ?> ><?php echo $vin_number ?></option>
 
-                <?php } ?>
-            </select>
-        </td>
-    </tr>
-</table>
+                    <?php } ?>
+                </select>
+            </td>
+        </tr>
+    </table>
     <?php
 } else {
     ?>
@@ -33,24 +33,23 @@ if ($_GET['post'] != null && $_GET['action'] == "edit") {
         </tr>
     </table>
     <?php
-    }
-    ?>
-<script>
-    jQuery(document).ready(function() {
-        /*carInfo('<?php //echo $postmetas[0]->meta_value ?>');*/
-        jQuery('#vinNumber').on('change', function() {
-            carInfo(this.value);
-        });
-        function carInfo(xoo_aff_text_05a5i) {
-		var width = <?php echo ($_GET['post'] != null && $_GET['action'] == "edit") ? '213' : '100'; ?>;
-            jQuery.ajax({
-                type: "get",
-                dataType: "json",
-                url: 'https://vpic.nhtsa.dot.gov/api/vehicles/decodevinextended/'+xoo_aff_text_05a5i+'*BA?format=json',
-                success: function(obj) {
-                    console.log(obj.Results);
-                    jQuery(".tabel_data_json")
-                        .replaceWith(`
+}
+?>
+    <script>
+        jQuery(document).ready(function() {
+            jQuery('#vinNumber').on('change', function() {
+                carInfo(this.value);
+            });
+            function carInfo(xoo_aff_text_05a5i) {
+                var width = <?php echo ($_GET['post'] != null && $_GET['action'] == "edit") ? '213' : '100'; ?>;
+                jQuery.ajax({
+                    type: "get",
+                    dataType: "json",
+                    url: 'https://vpic.nhtsa.dot.gov/api/vehicles/decodevinextended/'+xoo_aff_text_05a5i+'*BA?format=json',
+                    success: function(obj) {
+                        console.log(obj.Results);
+                        jQuery(".tabel_data_json")
+                            .replaceWith(`
                             <table style="width: `+width+`%" border="1" class="tabel_data_json">
                                 <tbody>
                                     <tr>
@@ -110,9 +109,9 @@ if ($_GET['post'] != null && $_GET['action'] == "edit") {
                                 </tbody>
                             </table>
                             `)
-                }
-            });
-        }
-    })
-</script>
+                    }
+                });
+            }
+        })
+    </script>
 <?php
