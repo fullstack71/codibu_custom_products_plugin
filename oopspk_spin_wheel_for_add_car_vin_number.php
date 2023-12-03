@@ -117,13 +117,15 @@ function userCarVinNumberSave($userId) {
             }
         }
     }
-	
-	if ($_POST['vin_number_add'] != NULL){
-		$differences = array_diff($_POST['vin_number_add'], $carVinNumbers);
-		foreach ($differences as $vin_number){
-			add_user_meta($userId,'xoo_aff_text_05a5i',$vin_number, false);
-		}
-	}
+
+    if ($_POST['vin_number_add'] != NULL){
+        $differences = array_diff($_POST['vin_number_add'], $carVinNumbers);
+        foreach ($differences as $vin_number){
+            if (trim($vin_number) != ""){
+                add_user_meta($userId,'xoo_aff_text_05a5i',$vin_number, false);
+            }
+        }
+    }
 }
 add_action('personal_options_update', 'userCarVinNumberSave');
 add_action('edit_user_profile_update', 'userCarVinNumberSave');
