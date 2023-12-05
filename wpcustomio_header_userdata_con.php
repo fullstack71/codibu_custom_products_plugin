@@ -6,17 +6,16 @@ $meta_data = get_user_meta($current_user_id);
 
 $user = wp_get_current_user();
 
-
 $role = reset($user->roles);
-if($role == "administrator"){
-$vin_car_number_json ='';
-//xoo_aff_number_nx1lj
-//$vin_car_number_json = $meta_data['xoo_aff_number_nx1lj'][0];	
-}
-else{
-$vin_car_number_json = $meta_data['xoo_aff_text_05a5i'][0];	
-}
 
+
+if($role == "administrator"){
+    $vin_car_number_json ='';
+} else {
+    $vin_numbers = get_user_meta($current_user_id, 'car_vin_number', true);
+    $vin_numbers = unserialize($vin_numbers);
+    $vin_car_number_json = $vin_numbers[0];
+}
 $ch = curl_init();
 
 // Set cURL options for GET request
@@ -37,8 +36,8 @@ if ($responseArray === null) {
     // Now you can work with the $responseArray as a PHP array
     //var_dump($responseArray['Results']);
 
-?>
+    ?>
 
-<?php
+    <?php
 }
 ?>

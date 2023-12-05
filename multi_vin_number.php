@@ -1,38 +1,46 @@
 <?php
 defined('ABSPATH') || die ("You can't access this file directyly !");
-if ($_GET['post'] != null && $_GET['action'] == "edit") {
-    $vin_number_meta_value= get_post_meta( get_the_ID(), "Car Vin Number" );
-    $vin_number_meta_value = reset($vin_number_meta_value);
-    ?>
-    <table class="form-table" style="margin-bottom: 10px;">
-        <tr>
-            <th><label for="user_birthday">Select car vin number</label></th>
-            <td>
-                <select name="vinNumber" id="vinNumber">
-                    <?php foreach (get_user_meta($user_id, 'xoo_aff_text_05a5i', false) as $vin_number) { ?>
-                        <option value="<?php echo $vin_number ?>" <?php echo ($vin_number_meta_value == $vin_number) ? 'selected' : ''; ?> ><?php echo $vin_number ?></option>
 
-                    <?php } ?>
-                </select>
-            </td>
-        </tr>
-    </table>
-    <?php
-} else {
-    ?>
-    <table class="form-table" style="margin-bottom: 10px;">
-        <tr>
-            <th><label for="user_birthday">Select car vin number</label></th>
-            <td>
-                <select name="vinNumber" id="vinNumber">
-                    <?php foreach (get_user_meta($user_id, 'xoo_aff_text_05a5i', false) as $vin_number) { ?>
-                        <option value="<?php echo $vin_number ?>"><?php echo $vin_number ?></option>
-                    <?php } ?>
-                </select>
-            </td>
-        </tr>
-    </table>
-    <?php
+
+$vin_numbers = get_user_meta($user_id, 'car_vin_number', true);
+$vin_numbers = unserialize($vin_numbers);
+if ($vin_numbers){
+    if ($_GET['post'] != null && $_GET['action'] == "edit") {
+        $vin_number_meta_value= get_post_meta( get_the_ID(), "Car Vin Number" );
+        $vin_number_meta_value = reset($vin_number_meta_value);
+        ?>
+        <table class="form-table" style="margin-bottom: 10px;">
+            <tr>
+                <th><label for="user_birthday">Select car vin number</label></th>
+                <td>
+                    <select name="vinNumber" id="vinNumber">
+                        <?php
+                        foreach ($vin_numbers as $vin_number) { ?>
+                            <option value="<?php echo $vin_number ?>" <?php echo ($vin_number_meta_value == $vin_number) ? 'selected' : ''; ?> ><?php echo $vin_number ?></option>
+
+                        <?php } ?>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <?php
+    } else {
+        ?>
+        <table class="form-table" style="margin-bottom: 10px;">
+            <tr>
+                <th><label for="user_birthday">Select car vin number</label></th>
+                <td>
+                    <select name="vinNumber" id="vinNumber">
+                        <?php
+                        foreach ($vin_numbers as $vin_number) { ?>
+                            <option value="<?php echo $vin_number ?>"><?php echo $vin_number ?></option>
+                        <?php } ?>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <?php
+    }
 }
 ?>
     <script>
@@ -40,12 +48,12 @@ if ($_GET['post'] != null && $_GET['action'] == "edit") {
             jQuery('#vinNumber').on('change', function() {
                 carInfo(this.value);
             });
-            function carInfo(xoo_aff_text_05a5i) {
+            function carInfo(car_vin_number) {
                 var width = <?php echo ($_GET['post'] != null && $_GET['action'] == "edit") ? '213' : '100'; ?>;
                 jQuery.ajax({
                     type: "get",
                     dataType: "json",
-                    url: 'https://vpic.nhtsa.dot.gov/api/vehicles/decodevinextended/'+xoo_aff_text_05a5i+'*BA?format=json',
+                    url: 'https://vpic.nhtsa.dot.gov/api/vehicles/decodevinextended/'+car_vin_number+'*BA?format=json',
                     success: function(obj) {
                         console.log(obj.Results);
                         jQuery(".tabel_data_json")

@@ -8,9 +8,12 @@ function add_this_vin_script_footer(){
         $parentDiv = 'display: inline-flex;';
         $inputTxt = 'max-width: 237px;';
         $inputbtn = 'margin-left: 5px;padding: 8px;';
+
+        $vin_numbers = get_user_meta($user->ID, 'car_vin_number', true);
+        $vin_numbers = $vin_numbers ? json_encode(unserialize($vin_numbers)) : json_encode([]);
         ?>
         <script>
-            var vin_numbers = <?php echo json_encode(get_user_meta($user->ID, 'xoo_aff_text_05a5i', false)); ?>;
+            var vin_numbers = <?php echo $vin_numbers ?>;
 
             vin_numbers = vin_numbers.map((element, index) => {
                 return '<div class="input-block" style="margin-bottom: 5px;<?php echo $parentDiv; ?>"> <input style="<?php echo $inputTxt; ?>" type="text" name="vin_number_update[]" value="'+element+'" class="form-control" disabled></div>';
@@ -24,7 +27,7 @@ function add_this_vin_script_footer(){
                 jQuery(document).on("click", ".remove-field", function () {
                     jQuery(this).closest(".input-block").remove();
                 });
-                jQuery('.xoo_aff_text_05a5i_cont').parent().parent().hide()
+                jQuery('.car_vin_number_cont').parent().parent().hide()
             })
         </script>
         <?php
@@ -51,7 +54,6 @@ function userCarVinNumberOwnForm(){
 }
 
 function userCarVinNumberForm($user) {
-    $user_data = get_userdata($user->ID);
     foreach($user->roles as $role){
         $role = $role;
         break;
@@ -67,22 +69,27 @@ function userCarVinNumberForm($user) {
                 </td>
             </tr>
         </table>
-        <script>
-            var vin_numbers = <?php echo json_encode(get_user_meta($user->ID, 'xoo_aff_text_05a5i', false)); ?>;
 
+        <?php
+        $vin_numbers = get_user_meta($user->ID, 'car_vin_number', true);
+        $vin_numbers = $vin_numbers ? json_encode(unserialize($vin_numbers)) : json_encode([]);
+
+        ?>
+        <script>
+            var vin_numbers = <?php echo $vin_numbers ?>;
             vin_numbers = vin_numbers.map((element, index) => {
-                return '<div class="input-block" style="margin-bottom: 5px;"> <input  type="text" name="vin_number_update[]" value="'+element+'" class="form-control"><input type="button" class="remove-field" value="-"></div>';
+                return '<div class="input-block" style="margin-bottom: 5px;"><input type="checkbox" name="'+index+'"> <input  type="text" name="vin_number_update[]" value="'+element+'" class="form-control"><input type="button" class="remove-field" value="-"></div>';
             });
             jQuery(document).ready(function() {
                 jQuery("#some_div").append(vin_numbers.toString().replaceAll(',', ''))
 
                 jQuery("#add-field").click(function () {
-                    jQuery("#some_div").append('<div class="input-block" style="margin-bottom: 5px;"><input type="text" name="vin_number_add[]" class="form-control"><input type="button" class="remove-field" value="-"></div>');
+                    jQuery("#some_div").append('<div class="input-block" style="margin-bottom: 5px;"><input type="checkbox" name="is_check[]"> <input type="text" name="vin_number_add[]" class="form-control"><input type="button" class="remove-field" value="-"></div>');
                 });
                 jQuery(document).on("click", ".remove-field", function () {
                     jQuery(this).closest(".input-block").remove();
                 });
-                jQuery('.xoo_aff_text_05a5i_cont').parent().parent().hide()
+                jQuery('.car_vin_number_cont').parent().parent().hide()
             })
         </script>
         <?php
@@ -98,34 +105,32 @@ function userCarVinNumberSave($userId) {
     if (!current_user_can('edit_user', $userId)) {
         return;
     }
-    $carVinNumbers = get_user_meta($userId, 'xoo_aff_text_05a5i', false);
+
+    /*    foreach(get_users() as $user){
+            $carVinNumbers = get_user_meta($user->ID, 'xoo_aff_text_05a5i', false);
+            if(count($carVinNumbers)>=1){
+                $asdasd = [];
+                foreach ($carVinNumbers as $kk => $carVinNumber) {
+                    $asdasd[$kk] = $carVinNumber;
+                    delete_user_meta($user->ID, 'xoo_aff_text_05a5i', $carVinNumber, false);
+                }
+                update_user_meta($user->ID,'car_vin_number',serialize($asdasd),'');
+            }
+        }*/
+
+    $carVinNumbers = get_user_meta($userId, 'car_vin_number', true);
+    $carVinNumbers = unserialize($carVinNumbers) ? unserialize($carVinNumbers) : [];
+
     $current_hook = current_filter();
     if($current_hook != 'woocommerce_update_customer') {
-        if ($_POST['vin_number_update'] != NULL) {
-            $differences = array_diff($carVinNumbers, $_POST['vin_number_update']);
-            foreach ($differences as $difference) {
-                delete_user_meta($userId, 'xoo_aff_text_05a5i', $difference, false);
-            }
-
-            $differences = array_diff($_POST['vin_number_update'], $carVinNumbers);
-            foreach ($differences as $difference) {
-                add_user_meta($userId, 'xoo_aff_text_05a5i', $difference, false);
-            }
-        } else {
-            foreach ($carVinNumbers as $carVinNumber) {
-                delete_user_meta($userId, 'xoo_aff_text_05a5i', $carVinNumber, false);
-            }
-        }
+        $vin_number_update =$_POST['vin_number_update'] != NULL ? $_POST['vin_number_update'] : [];
+        $vin_number_add = $_POST['vin_number_add'] != NULL ? $_POST['vin_number_add'] : [];
+        $array = array_merge($vin_number_update,$vin_number_add);
+    } else {
+        $vin_number_add = $_POST['vin_number_add'] != NULL ? $_POST['vin_number_add'] : [];
+        $array = array_merge($carVinNumbers,$vin_number_add);
     }
-
-    if ($_POST['vin_number_add'] != NULL){
-        $differences = array_diff($_POST['vin_number_add'], $carVinNumbers);
-        foreach ($differences as $vin_number){
-            if (trim($vin_number) != ""){
-                add_user_meta($userId,'xoo_aff_text_05a5i',$vin_number, false);
-            }
-        }
-    }
+    update_user_meta($userId,'car_vin_number',serialize($array),serialize($carVinNumbers));
 }
 add_action('personal_options_update', 'userCarVinNumberSave');
 add_action('edit_user_profile_update', 'userCarVinNumberSave');
