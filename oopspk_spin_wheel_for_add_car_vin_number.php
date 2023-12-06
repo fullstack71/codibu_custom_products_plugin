@@ -30,38 +30,6 @@ function add_this_vin_script_footer(){
                 jQuery('.car_vin_number_cont').parent().parent().hide()
             })
         </script>
-        <!-- <script>
-            var vin_numbers = <?php echo $vin_numbers ?>;
-            function updateNames() {
-                jQuery("#some_div .input-block").each(function (index) {
-                    var checkboxName = 'vin_checkbox_' + index; // Updated name for each checkbox
-                    jQuery(this).find('input[type="checkbox"]').attr('name', checkboxName);
-                });
-            }
-
-            vin_numbers = vin_numbers.map((element, index) => {
-                var checkboxName = 'vin_checkbox_' + index; // Unique name for each checkbox
-
-                return '<div class="input-block" style="margin-bottom: 5px;<?php echo $parentDiv; ?>"><input type="checkbox" name="' + checkboxName + '" value="checked" ' + element.is_check + '> <input style="<?php echo $inputTxt; ?>" type="text" name="vin_number_update[]" value="' + element.vin_number + '" class="form-control"><input type="button" class="remove-field" value="-"></div>';
-            });
-
-            jQuery(document).ready(function() {
-                jQuery("#some_div").append(vin_numbers.toString().replaceAll(',', ''));
-
-                jQuery("#add-field").click(function () {
-                    var newIndex = jQuery("#some_div").find('.input-block').length;
-                    var checkboxName = 'vin_checkbox_' + newIndex; // Unique name for each checkbox
-                    jQuery("#some_div").append('<div class="input-block" style="margin-bottom: 5px;<?php echo $parentDiv; ?>"><input type="checkbox" name="' + checkboxName + '" value="checked"> <input style="<?php echo $inputTxt; ?>" type="text" name="vin_number_add[]" class="form-control"><input style="<?php echo $inputbtn; ?>" type="button" class="remove-field" value="-"></div>');
-                });
-
-                jQuery(document).on("click", ".remove-field", function () {
-                    jQuery(this).closest(".input-block").remove();
-                    updateNames(); // Update names after removing a checkbox
-                });
-
-                jQuery('.car_vin_number_cont').parent().parent().hide();
-            })
-        </script>-->
         <?php
     }
 }
@@ -152,33 +120,6 @@ function userCarVinNumberSave($userId) {
     if (!current_user_can('edit_user', $userId)) {
         return;
     }
-
-    /*
-        foreach(get_users() as $user){
-            $carVinNumbers = get_user_meta($user->ID, 'car_vin_number', true);
-            $carVinNumbers2 = unserialize($carVinNumbers) ? unserialize($carVinNumbers) : [];
-            if(count($carVinNumbers2)>=1){
-                $newArray = [];
-                foreach ($carVinNumbers2 as $key => $carVinNumber) {
-                    $newArray[$key] = [
-                        'is_check' => null,
-                        'vin_number' =>$carVinNumber
-                    ];
-                }
-                update_user_meta($user->ID,'car_vin_numbers',serialize($newArray), $carVinNumbers);
-            }
-        }
-    
-        foreach(get_users() as $user){
-            $carVinNumbers = get_user_meta($user->ID, 'xoo_aff_text_05a5i', false);
-            $asdasd = [];
-            foreach ($carVinNumbers as $kk => $carVinNumber) {
-                $asdasd[$kk] = $carVinNumber;
-                delete_user_meta($user->ID, 'xoo_aff_text_05a5i', $carVinNumber, false);
-            }
-            update_user_meta($user->ID,'xoo_aff_text_05a5i',serialize($asdasd),'');
-        }
-    */
     $carVinNumbers = get_user_meta($userId, 'car_vin_numbers', true);
     $carVinNumbersArray = unserialize($carVinNumbers) ? unserialize($carVinNumbers) : [];
     $current_hook = current_filter();
