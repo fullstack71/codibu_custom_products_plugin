@@ -12,7 +12,7 @@ $role = reset($user->roles);
 if($role == "administrator"){
     $vin_car_number_json ='';
 } else {
-    $vin_numbers = get_user_meta($current_user_id, 'car_vin_number', true);
+    $vin_numbers = get_user_meta($current_user_id, 'car_vin_numbers', true);
     $vin_numbers = unserialize($vin_numbers);
     $vin_car_number_json = $vin_numbers[0];
 }

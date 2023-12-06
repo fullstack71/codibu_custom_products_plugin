@@ -2,7 +2,7 @@
 defined('ABSPATH') || die ("You can't access this file directyly !");
 
 
-$vin_numbers = get_user_meta($user_id, 'car_vin_number', true);
+$vin_numbers = get_user_meta($user_id, 'car_vin_numbers', true);
 $vin_numbers = unserialize($vin_numbers);
 if ($vin_numbers){
     if ($_GET['post'] != null && $_GET['action'] == "edit") {
@@ -16,7 +16,7 @@ if ($vin_numbers){
                     <select name="vinNumber" id="vinNumber">
                         <?php
                         foreach ($vin_numbers as $vin_number) { ?>
-                            <option value="<?php echo $vin_number ?>" <?php echo ($vin_number_meta_value == $vin_number) ? 'selected' : ''; ?> ><?php echo $vin_number ?></option>
+                            <option value="<?php echo $vin_number['vin_number'] ?>" <?php echo ($vin_number_meta_value == $vin_number['vin_number']) ? 'selected' : ''; ?> ><?php echo $vin_number['vin_number'] ?></option>
 
                         <?php } ?>
                     </select>
@@ -33,7 +33,7 @@ if ($vin_numbers){
                     <select name="vinNumber" id="vinNumber">
                         <?php
                         foreach ($vin_numbers as $vin_number) { ?>
-                            <option value="<?php echo $vin_number ?>"><?php echo $vin_number ?></option>
+                            <option value="<?php echo $vin_number['vin_number'] ?>"><?php echo $vin_number['vin_number'] ?></option>
                         <?php } ?>
                     </select>
                 </td>

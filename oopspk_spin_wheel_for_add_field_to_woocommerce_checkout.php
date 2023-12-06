@@ -2,7 +2,7 @@
 defined('ABSPATH') || die ("You can't access this file directyly !");
 
 function add_this_script_footer(){
-    $vin_numbers = get_user_meta(get_current_user_id(), 'car_vin_number', true);
+    $vin_numbers = get_user_meta(get_current_user_id(), 'car_vin_numbers', true);
     $vin_numbers = $vin_numbers ? unserialize($vin_numbers) : [];
     ?>
     <script>
@@ -39,7 +39,7 @@ add_action('wp_footer', 'add_this_script_footer');
 add_action('woocommerce_checkout_before_customer_details', 'add_checkout_car_vin_number');
 function add_checkout_car_vin_number($checkout){
     $car_vin_number = isset($_POST['add_vin_number']) ? sanitize_text_field($_POST['add_vin_number']) : '';
-    $vin_numbers = get_user_meta(get_current_user_id(), 'car_vin_number', true);
+    $vin_numbers = get_user_meta(get_current_user_id(), 'car_vin_numbers', true);
     $vin_numbers = $vin_numbers ? unserialize($vin_numbers) : [];
     if($vin_numbers != []) {
         ?>
@@ -59,7 +59,7 @@ function add_checkout_car_vin_number($checkout){
     ));
     if($vin_numbers != []) {
         foreach($vin_numbers as $vin_number){
-            $vin_numbers_k_v[$vin_number] = $vin_number;
+            $vin_numbers_k_v[$vin_number['vin_number']] = $vin_number['vin_number'];
         }
         woocommerce_form_field( 'select_vin_number', array(
             'type'          => 'select',
@@ -134,11 +134,20 @@ add_action('woocommerce_checkout_update_order_meta', 'store_checkout_car_vin_num
 function store_checkout_car_vin_number($order_id){
     if ($_POST['bin_number'] == "add_vin"){
         if (!empty($_POST['add_vin_number'])) {
-            $vin_numbers = get_user_meta(get_current_user_id(), 'car_vin_number', true);
-            $vin_numbers = $vin_numbers ? unserialize($vin_numbers) : [];
-            if (!in_array($_POST['add_vin_number'], $vin_numbers)) {
-                $array = array_merge($vin_numbers,[$_POST['add_vin_number']]);
-                update_user_meta(get_current_user_id(),'car_vin_number',serialize($array),serialize($vin_numbers));
+            $vin_numbers = get_user_meta(get_current_user_id(), 'car_vin_numbers', true) ?? null;
+            $vin_numbers_array = $vin_numbers ? unserialize($vin_numbers) : [];
+
+            $numbers = array_map(function($itam) {
+                return $itam['vin_number'];
+            }, $vin_numbers_array);
+
+            if (!in_array($_POST['add_vin_number'], $numbers)) {
+                $newItem = [
+                    'is_check' => null,
+                    'vin_number' =>$_POST['add_vin_number']
+                ];
+                $array = array_merge($vin_numbers_array,[$newItem]);
+                update_user_meta(get_current_user_id(),'car_vin_numbers',serialize($array),$vin_numbers);
             }
             $vin = sanitize_text_field($_POST['add_vin_number']);
         }

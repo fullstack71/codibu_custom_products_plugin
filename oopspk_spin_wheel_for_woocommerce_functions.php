@@ -241,7 +241,7 @@ function custom_text_on_orders_page( $order ) {
 
 // Add custom fields to user profile edit page
 function add_custom_user_fields($user) {
-    $meta_data = get_user_meta($user->ID, 'car_vin_number', true);
+    $meta_data = get_user_meta($user->ID, 'car_vin_numbers', true);
     $role = reset($user->roles);
     if($role == 'administrator'){
         $vin_car_number_json =  "";
