@@ -38,19 +38,39 @@ add_action('wp_footer', 'add_this_script_footer');
 
 add_action('woocommerce_checkout_before_customer_details', 'add_checkout_car_vin_number');
 function add_checkout_car_vin_number($checkout){
+    ?>
+
+    <style>
+        #select_vin_number {
+            -moz-appearance: inherit !important;
+            -webkit-appearance: menulist !important;
+            border: 0px solid #ccc;
+            background-color: #F9FAFA;
+        }
+        #add_vin_number {
+            border: 0px solid #ccc;
+            background-color: #F9FAFA;
+        }
+        .box {
+            background: var(--sections-background-color,#fff);
+            border-radius: var(--sections-border-radius,3px);
+            padding: var(--sections-padding,16px 30px);
+            margin: var(--sections-margin,0 0 24px 0);
+            border: 1px var(--sections-border-type,solid) var(--sections-border-color,#d5d8dc);
+            display: block;
+        }
+    </style>
+    <?php
     $car_vin_number = isset($_POST['add_vin_number']) ? sanitize_text_field($_POST['add_vin_number']) : '';
     $vin_numbers = get_user_meta(get_current_user_id(), 'car_vin_numbers', true);
     $vin_numbers = $vin_numbers ? unserialize($vin_numbers) : [];
     if($vin_numbers != []) {
-        ?>
-        <input type="button" id="selectVin" class="woocommerce-Button button" name="select_vin" value="Select Bin Number">
-        OR
-        <?php
+        echo '<div class="box"><input type="button" id="selectVin" class="woocommerce-Button button" name="select_vin" value="Select Bin Number">
+             OR
+              <input type="button" id="addVin" class="woocommerce-Button button" name="add_vin" value="Add Bin Number">
+              <input type="hidden" id="binNumber" name="bin_number">
+             ';
     }
-    ?>
-    <input type="button" id="addVin" class="woocommerce-Button button" name="add_vin" value="Add Bin Number">
-    <input type="hidden" id="binNumber" name="bin_number">
-    <?php
     woocommerce_form_field('add_vin_number', array(
         'type'          => 'text',
         'placeholder'   => __('Enter Car Vin Number', 'woocommerce'),
@@ -64,11 +84,12 @@ function add_checkout_car_vin_number($checkout){
         woocommerce_form_field( 'select_vin_number', array(
             'type'          => 'select',
             'required'    => true,
-			'custom_attributes' => array('style'=>"padding: 10px;"),
+            'custom_attributes' => array('style'=>"padding: 10px;"),
             'options'     => $vin_numbers_k_v,
         ),
         );
     }
+    echo '</div>';
 }
 
 /**
