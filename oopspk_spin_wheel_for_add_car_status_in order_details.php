@@ -32,7 +32,7 @@ function car_status_single_order_meta_box() {
                 $('body').html(printContent1 + printContent);
                 window.print();
                 $('body').html(originalContent);
-            }
+            });
             // Attach a click event to a button or element that will trigger the AJAX request
             $('#sendMailCarStatus').on('click', function () {
                 var printContent = $('#printableArea').html();
@@ -44,7 +44,7 @@ function car_status_single_order_meta_box() {
                     type: 'POST',
                     url: '<?php echo admin_url('admin-ajax.php');?>',
                     data: {
-                        action: 'send_car_status_mail',
+                        action: 'generate_pdf_and_send_email',
                         htmlData: htmlData,
                     },
                     success: function(response) {
@@ -301,7 +301,7 @@ function car_status_single_order_meta_box() {
                 cursor: pointer;
                 margin: 5px;
                 width: 100px;
-                float: right;
+                float: inline-end;
             }
 
             .button span {

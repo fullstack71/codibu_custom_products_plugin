@@ -7,28 +7,27 @@ use Dompdf\Options;
 // Function to generate PDF and send email
 function generate_pdf_and_send_email() {
 
-    // Get the HTML data from the AJAX request
-    $htmlData = isset($_POST['htmlData']) ? $_POST['htmlData'] : '';
 
+    // Get the HTML data from the AJAX request
+    //$htmlData = isset($_POST['htmlData']) ? $_POST['htmlData'] : '';
+    $htmlData = file_get_contents(plugin_dir_path(__FILE__) . '/report.html');
     // Create a Dompdf instance
     $options = new Options();
     $options->set('isHtml5ParserEnabled', true);
     $options->set('isPhpEnabled', true);
     $dompdf = new Dompdf($options);
-
     // Load HTML into Dompdf
     $dompdf->loadHtml($htmlData);
 
+
     // Set paper size (optional)
-    $dompdf->setPaper('A4', 'portrait');
+    $dompdf->setPaper('Letter', 'portrait');
 
     // Render PDF
     $dompdf->render();
 
     // Output buffer
     $canvas = $dompdf->getCanvas();
-    $numPages = count($canvas->get_page_count());
-
     // Clear existing output buffer
     ob_clean();
 

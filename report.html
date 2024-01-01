@@ -1,0 +1,1277 @@
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <style>
+  @media print {
+   body {
+    margin:0px; /* Adjust the value as needed */
+   }
+
+   .tabel_data_json{
+    margin: 0 auto;
+    width: max-content;
+    max-width: 110%;
+   }
+  }
+  body {
+   font-size: 9px; /* Set the default font size for the entire document */
+  }
+  h1, h2, h3, h4, h5, h6 {
+   color: #000000;
+   line-height: 150%;
+  }
+  h1 { font-size: 32px; }
+
+  h2 { font-size: 28px; }
+
+  h3 { font-size: 24px; }
+
+  h4 { font-size: 20px; }
+
+  h5 { font-size: 16px; }
+
+  h6 { font-size: 12px; }
+
+
+  .left {
+
+  }
+  .company-information {
+   margin-bottom: 3em;
+  }
+  .customer-addresses {
+   margin: 50px 0px 50px -15px;
+  }
+
+  .customer-addresses .column {
+   padding: 0 15px;
+   width: 33.33333333%;
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   box-sizing: border-box;
+  }
+
+  .order-info {
+   margin-bottom: 0;
+  }
+
+  .order-date {
+   color: #666666;
+   margin: 0;
+  }
+
+
+  span.coupon {
+   background: #F4F4F4;
+   color: #333;
+   font-family: monospace;
+   padding: 2px 4px;
+  }
+  .clear {
+   clear: both;
+  }
+  .document-body-content{
+   position: relative;
+  }
+  .td_tilte {
+   border: 0px solid #1D2327;
+   background-color: #1D2327;
+   color: #fff;
+  }
+  .tabel_data_json{
+   margin: 0 auto;
+   width: max-content;
+  }
+
+  .crimson{
+   background-color: crimson;
+  }
+  .darkgoldenrod{
+   background-color: darkgoldenrod;
+  }
+  .greenyellow{
+   background-color: greenyellow;
+  }
+  .vertical-label {
+   writing-mode:tb-rl;
+   padding: 3px;
+   font-weight: 600;
+   height: 50px;
+   //margin: 5px;
+  }
+  .horiz-label{
+   padding: 6px;
+   font-weight: 600;
+   height: 50px;
+   margin: 5px;
+  }
+  .text-box-size{
+   min-width: 400px;
+   height: 24px;
+   margin: 6px;
+  }
+  .horiz-flex-container {
+   display: flex;
+  }
+
+  .vertical-flex-container {
+   display: flex;
+   flex-direction: column;
+  }
+  tr {
+   margin-bottom: 6px;
+  }
+  th,td {
+   text-align: center;
+  }
+  th, .sub-cell {
+   padding-bottom: 10px;
+  }
+  .check-box-size {
+   box-sizing: border-box;
+  }
+
+  .sub-cell {
+   display: flex;
+   flex-direction: row;
+   margin-bottom: 10px;
+  }
+  .sub-cell div {
+   display: flex;
+   float: left;
+   margin-right: 5px;
+  }
+
+  .last-column {
+   text-align: left;
+  }
+  .last-column table {
+   margin-left: -3px;
+  }
+  label {
+   vertical-align: text-top;
+  }
+  .button {
+   display: inline-block;
+   border-radius: 4px;
+   background-color: #f4511e;
+   border: none;
+   color: #FFFFFF;
+   text-align: center;
+   font-size: 28px;
+   padding: 20px;
+   width: 200px;
+   transition: all 0.5s;
+   cursor: pointer;
+   margin: 5px;
+   width: 100px;
+  }
+
+  .button span {
+   cursor: pointer;
+   display: inline-block;
+   position: relative;
+   transition: 0.5s;
+  }
+
+  .button span:after {
+   content: '\00bb';
+   position: absolute;
+   opacity: 0;
+   top: 0;
+   right: -20px;
+   transition: 0.5s;
+  }
+
+  .button:hover span {
+   padding-right: 25px;
+  }
+
+  .button:hover span:after {
+   opacity: 1;
+   right: 0;
+  }
+ </style>
+</head>
+<body>
+<table style="margin-top: 50px;">
+ <tbody>
+ <tr>
+  <th style="width: 6%;">Visual Brake Check</th>
+  <th style="width: .01%;"><label class="vertical-label crimson">Red</label></th>
+  <th style="width: .01%;"><label class="vertical-label darkgoldenrod">Amber</label></th>
+  <th style="width: .01%;"><label class="vertical-label greenyellow">Green</label></th>
+  <th style="width: .01%;"><label class="vertical-label">N/C</label></th>
+  <th style="width: 90%;"><label class="horiz-label">Report &amp; Recommendations</label></th>
+ </tr>
+ <tr>
+  <td>
+   <label>Brake Pads/Shoes</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r1c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r1c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r1c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r1c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r1c5"></textarea>
+  </td>
+ </tr>
+ <!--    sub cell-->
+ <tr>
+  <td colspan="5">
+  </td>
+  <td class="sub-cell">
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r1c5s1">
+    <label>Front</label>
+   </div>
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r1c5s2">
+    <label>Rear</label>
+   </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Brake Rotors/Drums</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r2c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r2c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r2c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r2c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r2c5"></textarea>
+  </td>
+ </tr>
+ <!--    sub cell-->
+ <tr>
+  <td colspan="5">
+  </td>
+  <td class="sub-cell">
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r2c5s1">
+    <label>Front</label>
+   </div>
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r2c5s2">
+    <label>Rear</label>
+   </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Brake Hoses/Lines</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r3c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r3c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r3c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r3c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r3c5"></textarea>
+  </td>
+ </tr>
+ <!--    sub cell-->
+ <tr>
+  <td colspan="5">
+  </td>
+  <td class="sub-cell">
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r3c5s1">
+    <label>Front</label>
+   </div>
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r3c5s2">
+    <label>Rear</label>
+   </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Brake Calipers/Wheel Cylinders</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r4c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r4c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r4c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r4c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r4c5"></textarea>
+  </td>
+ </tr>
+ <!--    sub cell-->
+ <tr>
+  <td colspan="5">
+  </td>
+  <td class="sub-cell">
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r4c5s1">
+    <label>Front</label>
+   </div>
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r4c5s2">
+    <label>Rear</label>
+   </div>
+  </td>
+ </tr>
+ <tr>
+  <th style="width: 6%;">Visual Underhood Check</th>
+  <th style="width: .01%;"><label class="vertical-label crimson">Red</label></th>
+  <th style="width: .01%;"><label class="vertical-label darkgoldenrod">Amber</label></th>
+  <th style="width: .01%;"><label class="vertical-label greenyellow">Green</label></th>
+  <th style="width: .01%;"><label class="vertical-label">N/C</label></th>
+  <th style="width: 90%;"><label class="horiz-label">Report &amp; Recommendations</label></th>
+ </tr>
+ <tr>
+  <td>
+   <label>Air Filter</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r5c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r5c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r5c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r5c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r5c5"></textarea>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Battery</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r6c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r6c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r6c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r6c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r6c5"></textarea>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Belt(s)</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r7c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r7c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r7c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r7c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r7c5"></textarea>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Hoses</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r8c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r8c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r8c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r8c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r8c5"></textarea>
+  </td>
+ </tr>
+ <!--    sub cell-->
+ <tr>
+  <td colspan="5">
+  </td>
+  <td class="sub-cell">
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r8c5s1">
+    <label>Heater</label>
+   </div>
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r8c5s2">
+    <label>Air Conditioning</label>
+   </div>
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r8c5s3">
+    <label>Radiator</label>
+   </div>
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r8c5s3">
+    <label>Power Steering</label>
+   </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Engine Oil</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r9c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r9c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r9c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r9c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r9c5"></textarea>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Transmission Fluid</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r10c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r10c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r10c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r10c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r10c5"></textarea>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Brake Fluid</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r11c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r11c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r11c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r11c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r11c5"></textarea>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Clutch Fluid</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r12c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r12c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r12c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r12c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r12c5"></textarea>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Power Steering Fluid</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r13c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r13c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r13c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r13c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r13c5"></textarea>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Windshield Washer Fluid</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r14c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r14c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r14c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r14c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r14c5"></textarea>
+  </td>
+ </tr>
+ <tr>
+  <th style="width: 6%;">Tire Tread Depth and Pressure Check</th>
+  <th style="width: .01%;"><label class="vertical-label crimson">Red</label></th>
+  <th style="width: .01%;"><label class="vertical-label darkgoldenrod">Amber</label></th>
+  <th style="width: .01%;"><label class="vertical-label greenyellow">Green</label></th>
+  <th style="width: .01%;"><label class="vertical-label">N/C</label></th>
+  <th style="width: 90%;">
+   <table>
+    <tbody><tr>
+     <th colspan="3"><label class="horiz-label">Depth mm</label></th>
+    </tr>
+    <tr>
+     <th style="width: 100px;"><label class="horiz-label">Outer</label></th>
+     <th style="width: 100px;"><label class="horiz-label">Middle</label></th>
+     <th style="width: 100px;"><label class="horiz-label ">Inner</label></th>
+     <th><label class="horiz-label">Report &amp; Recommendations</label></th>
+    </tr>
+    </tbody></table>
+  </th>
+ </tr>
+ <tr>
+  <td>
+   <label>Front Left</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r15c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r15c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r15c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r15c4">
+  </td>
+  <td class="last-column">
+   <table>
+    <tbody><tr>
+     <td style="width: 100px;"><input style="min-height: 12px;" type="text" name="r15c5s1" value="  "></td>
+     <td style="width: 100px;"><input style="min-height: 12px;" type="text" name="r15c5s2" value="  "></td>
+     <td style="width: 100px;"><input style="min-height: 12px;" type="text" name="r15c5s3" value="  "></td>
+     <td class="last-column">
+      <textarea rows="2" cols="45" style="min-width:180px" type="text" name="r15c5s4"></textarea>
+     </td>
+    </tr>
+    </tbody></table>
+  </td>
+ </tr>
+ <!--    sub cell-->
+ <tr>
+  <td colspan="5">
+  </td>
+  <td class="sub-cell">
+   <div class="sub-cell-mr sub-cell-ml">
+    <input type="checkbox" name="r15c5s5">
+    <label>PSI</label>
+   </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Front Right</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r16c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r16c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r16c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r16c4">
+  </td>
+  <td class="last-column">
+   <table>
+    <tbody><tr>
+     <td style="width: 100px;"><input style="min-height: 12px;" type="text" name="r16c5s1" value="  "></td>
+     <td style="width: 100px;"><input style="min-height: 12px;" type="text" name="r16c5s2" value="  "></td>
+     <td style="width: 100px;"><input style="min-height: 12px;" type="text" name="r16c5s3" value="  "></td>
+     <td class="last-column">
+      <textarea rows="2" cols="45" style="min-width:180px" type="text" name="r16c5s4"></textarea>
+     </td>
+    </tr>
+    </tbody></table>
+  </td>
+ </tr>
+ <!--    sub cell-->
+ <tr>
+  <td colspan="5">
+  </td>
+  <td class="sub-cell">
+   <div class="sub-cell-mr sub-cell-ml">
+    <input type="checkbox" name="r16c5s5">
+    <label>PSI</label>
+   </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Rear Left</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r17c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r17c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r17c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r17c4">
+  </td>
+  <td class="last-column">
+   <table>
+    <tbody><tr>
+     <td style="width: 100px;"><input style="min-height: 12px;" type="text" name="r17c5s1" value="  "></td>
+     <td style="width: 100px;"><input style="min-height: 12px;" type="text" name="r17c5s2" value="  "></td>
+     <td style="width: 100px;"><input style="min-height: 12px;" type="text" name="r17c5s3" value="  "></td>
+     <td class="last-column">
+      <textarea rows="2" cols="45" style="min-width:180px" type="text" name="r17c5s4"></textarea>
+     </td>
+    </tr>
+    </tbody></table>
+  </td>
+ </tr>
+
+ <!--    sub cell-->
+ <tr>
+  <td colspan="5">
+  </td>
+  <td class="sub-cell">
+   <div class="sub-cell-mr sub-cell-ml">
+    <input type="checkbox" name="r17c5s5">
+    <label>PSI</label>
+   </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Rear Right</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r18c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r18c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r18c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r18c4">
+  </td>
+  <td class="last-column">
+   <table>
+    <tbody><tr>
+     <td style="width: 100px;"><input style="min-height: 12px;" type="text" name="r18c5s1" value="  "></td>
+     <td style="width: 100px;"><input style="min-height: 12px;" type="text" name="r18c5s2" value="  "></td>
+     <td style="width: 100px;"><input style="min-height: 12px;" type="text" name="r18c5s3" value="  "></td>
+     <td class="last-column">
+      <textarea rows="2" cols="45" style="min-width:180px" type="text" name="r18c5s4"></textarea>
+     </td>
+    </tr>
+    </tbody></table>
+  </td>
+ </tr>
+ <!--    sub cell-->
+ <tr>
+  <td colspan="5">
+  </td>
+  <td class="sub-cell">
+   <div class="sub-cell-mr sub-cell-ml">
+    <input type="checkbox" name="r18c5s5">
+    <label>PSI</label>
+   </div>
+  </td>
+ </tr>
+ <tr>
+  <th style="width: 6%;">Visual Exterior Check</th>
+  <th style="width: .01%;"><label class="vertical-label crimson">Red</label></th>
+  <th style="width: .01%;"><label class="vertical-label darkgoldenrod">Amber</label></th>
+  <th style="width: .01%;"><label class="vertical-label greenyellow">Green</label></th>
+  <th style="width: .01%;"><label class="vertical-label">N/C</label></th>
+  <th style="width: 90%;"><label class="horiz-label">Report &amp; Recommendations</label></th>
+ </tr>
+ <tr>
+  <td>
+   <label>Lights</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r19c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r19c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r19c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r19c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r19c5"></textarea>
+  </td>
+ </tr>
+ <!--    sub cell-->
+ <tr>
+  <td colspan="5">
+  </td>
+  <td class="sub-cell">
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r19c5s1">
+    <label>Headlights</label>
+   </div>
+
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r19c5s2">
+    <label>High Beams</label>
+   </div>
+
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r19c5s3">
+    <label>Brake Lights/Tail Lights</label>
+   </div>
+
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r19c5s4">
+    <label>Turn Signals</label>
+   </div>
+
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r19c5s5">
+    <label>Reverse Lights</label>
+   </div>
+
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r19c5s6">
+    <label>Parking Lights</label>
+   </div>
+
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r19c5s7">
+    <label>Fog Lights</label>
+   </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Wiper Blades</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r20c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r20c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r20c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r20c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r20c5"></textarea>
+  </td>
+ </tr>
+ <!--    sub cell-->
+ <tr>
+  <td colspan="5">
+  </td>
+  <td class="sub-cell">
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r20c5s1">
+    <label>Driver Side</label>
+   </div>
+
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r20c5s2">
+    <label>Passanger Side</label>
+   </div>
+
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r20c5s3">
+    <label>Rear</label>
+   </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Struts/Shocks</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r21c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r21c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r21c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r21c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r21c5"></textarea>
+  </td>
+ </tr>
+ <!--    sub cell-->
+ <tr>
+  <td colspan="5">
+  </td>
+  <td class="sub-cell">
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r21c5s1">
+    <label>Front Left</label>
+   </div>
+
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r21c5s2">
+    <label>Front Right</label>
+   </div>
+
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r21c5s3">
+    <label>Rear Left</label>
+   </div>
+
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r21c5s4">
+    <label>Rear Right</label>
+   </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Fuel Lines</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r22c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r22c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r22c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r22c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r22c5"></textarea>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Exhaust System</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r23c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r23c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r23c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r23c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r23c5"></textarea>
+  </td>
+ </tr>
+ <!--    sub cell-->
+ <tr>
+  <td colspan="5">
+  </td>
+  <td class="sub-cell">
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r23c5s1">
+    <label>Muffler</label>
+   </div>
+
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r23c5s2">
+    <label>Catalytic Converter</label>
+   </div>
+
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r23c5s3">
+    <label>Exhaust Manifold</label>
+   </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Steering System</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r24c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r24c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r24c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r24c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r24c5"></textarea>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Body Panels</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r25c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r25c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r25c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r25c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r25c5"></textarea>
+  </td>
+ </tr>
+ <!--    sub cell-->
+ <tr>
+  <td colspan="5">
+  </td>
+  <td class="sub-cell">
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r25c5s1">
+    <label>Front</label>
+   </div>
+
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r25c5s2">
+    <label>Left Side</label>
+   </div>
+
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r25c5s3">
+    <label>Rear</label>
+   </div>
+
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r25c5s4">
+    <label>Right Side</label>
+   </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Windows and Mirrors</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r26c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r26c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r26c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r26c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r26c5"></textarea>
+  </td>
+ </tr>
+ <!--    sub cell-->
+ <tr>
+  <td colspan="5">
+  </td>
+  <td class="sub-cell">
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r26c5s1">
+    <label>Windshield</label>
+   </div>
+
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r26c5s2">
+    <label>Side &amp; Rear Glass</label>
+   </div>
+
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r26c5s3">
+    <label>Mirrors</label>
+   </div>
+  </td>
+ </tr>
+ <tr>
+  <th style="width: 6%;">Visual Interior Check</th>
+  <th style="width: .01%;"><label class="vertical-label crimson">Red</label></th>
+  <th style="width: .01%;"><label class="vertical-label darkgoldenrod">Amber</label></th>
+  <th style="width: .01%;"><label class="vertical-label greenyellow">Green</label></th>
+  <th style="width: .01%;"><label class="vertical-label">N/C</label></th>
+  <th style="width: 90%;"><label class="horiz-label">Report &amp; Recommendations</label></th>
+ </tr>
+ <tr>
+  <td>
+   <label>Warning Lights</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r27c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r27c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r27c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r27c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r27c5"></textarea>
+  </td>
+ </tr>
+ <!--    sub cell-->
+ <tr>
+  <td colspan="5">
+  </td>
+  <td class="sub-cell">
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r27c5s1">
+    <label>Check Engine Light </label>
+   </div>
+
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r27c5s2">
+    <label>Airbag Light</label>
+   </div>
+
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r27c5s3">
+    <label>ABS Light</label>
+   </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Interior Lights</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r28c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r28c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r28c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r28c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r28c5"></textarea>
+  </td>
+ </tr>
+
+ <!--    sub cell-->
+ <tr>
+  <td colspan="5">
+  </td>
+  <td class="sub-cell">
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r28c5s1">
+    <label>Dashboard Lights</label>
+   </div>
+
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r28c5s2">
+    <label>Overhead/Map Lights</label>
+   </div>
+
+   <div class="sub-cell-mr">
+    <input type="checkbox" name="r28c5s3">
+    <label>Vanity/Mirror Lights</label>
+   </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Air Conditioning</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r29c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r29c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r29c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r29c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r29c5"></textarea>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Heating System</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r30c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r30c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r30c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r30c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r30c5"></textarea>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Cabin Air Filter</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r31c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r31c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r31c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r31c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r31c5"></textarea>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Seatbelt</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r32c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r32c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r32c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r32c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r32c5"></textarea>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <label>Airbags</label>
+  </td>
+  <td>
+   <input class="check-box-size check-box-crimson" type="checkbox" name="r33c1">
+  </td>
+  <td>
+   <input class="check-box-size check-box-darkgoldenrod" type="checkbox" name="r33c2">
+  </td>
+  <td>
+   <input class="check-box-size check-box-greenyellow" type="checkbox" name="r33c3">
+  </td>
+  <td>
+   <input class="check-box-size" type="checkbox" name="r33c4">
+  </td>
+  <td class="last-column">
+   <textarea rows="2" cols="120" type="text" name="r33c5"></textarea>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</body>
+</html>
