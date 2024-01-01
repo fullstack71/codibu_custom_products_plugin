@@ -24,17 +24,43 @@ function car_status_single_order_meta_box() {
     ?>
 
     <script>
-        function printPageArea(areaID){
-            var printContent = document.getElementById(areaID).innerHTML;
-            var printContent1 = document.getElementById('header').innerHTML;
-            var originalContent = document.body.innerHTML;
-            document.body.innerHTML = printContent1+printContent;
-            window.print();
-            document.body.innerHTML = originalContent;
-        }
+        jQuery(document).ready(function ($) {
+            $('#printCarStatus').on('click', function () {
+                var printContent = $('#printableArea').html();
+                var printContent1 = $('#header').html();
+                var originalContent = $('body').html();
+                $('body').html(printContent1 + printContent);
+                window.print();
+                $('body').html(originalContent);
+            }
+            // Attach a click event to a button or element that will trigger the AJAX request
+            $('#sendMailCarStatus').on('click', function () {
+                var printContent = $('#printableArea').html();
+                var printContent1 = $('#header').html();
+                var originalContent = $('body').html();
+                var htmlData = printContent1 + printContent;
+                // Make an AJAX request
+                jQuery.ajax({
+                    type: 'POST',
+                    url: '<?php echo admin_url('admin-ajax.php');?>',
+                    data: {
+                        action: 'send_car_status_mail',
+                        htmlData: htmlData,
+                    },
+                    success: function(response) {
+                        // Handle the response from the server (if needed)
+                        alert('Sent Successfully');
+                    }
+                });
+            });
+        });
+
+
 
     </script>
-    <button type="button" class="button" style="vertical-align:middle"  onclick="printPageArea('printableArea')"><span>Print </span></button>
+    <button type="button" class="button" style="vertical-align:middle" id="printCarStatus"><span>Print </span></button>
+
+    <button type="button" class="button" style="vertical-align:middle" id="sendMailCarStatus"><span>Send Mail </span></button>
     <div id="header-container" style="display: none;">
         <header id="header" style="width: 80%; margin: 0 auto;">
             <style>
@@ -275,7 +301,7 @@ function car_status_single_order_meta_box() {
                 cursor: pointer;
                 margin: 5px;
                 width: 100px;
-                float: inline-end;
+                float: right;
             }
 
             .button span {

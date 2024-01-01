@@ -134,7 +134,7 @@ function userCarVinNumberSave($userId) {
             ];
         }, $array, array_keys($array));
     } else {
-        if($_POST['vin_number_add'] != NULL){
+        if($_POST['vin_number_add'] != null){
             $array = array_map(function($itam) {
                 return [
                     'is_check' => null,

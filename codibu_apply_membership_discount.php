@@ -27,7 +27,7 @@ function codibu_alter_price_cart($cart) {
         $new_price = null; // Initialize $new_price
 
         // Check if the user is a member
-        if (wc_memberships_is_user_member($user_id)) {
+        if (wc_memberships_is_user_member($user_id) && wc_memberships_product_has_member_discount($cart_item['data']->get_id())) {
             $memberships_infos = wc_memberships_get_user_active_memberships($user_id);
             $membership_info = reset($memberships_infos);
             $membership_plan_id = $membership_info->get_plan_id();
@@ -51,6 +51,7 @@ function codibu_alter_price_cart($cart) {
         }
     }
 }
+
 
 add_action( 'wp_footer', 'codibu_trigger_js_function' );
 
