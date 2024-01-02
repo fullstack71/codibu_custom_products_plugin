@@ -191,18 +191,31 @@
    opacity: 1;
    right: 0;
   }
+  .th_f {
+   width: 6%;
+  }
+  .th_m {
+   width: .1%;
+  }
+  .th_l {
+   width: 90%;
+  }
+  .depth_inp{
+   width: 100px;
+   min-height:12px;
+  }
  </style>
 </head>
 <body>
 <table style="margin-top: 50px;">
  <tbody>
  <tr>
-  <th style="width: 6%;">Visual Brake Check</th>
-  <th style="width: .01%;"><label class="vertical-label crimson">Red</label></th>
-  <th style="width: .01%;"><label class="vertical-label darkgoldenrod">Amber</label></th>
-  <th style="width: .01%;"><label class="vertical-label greenyellow">Green</label></th>
-  <th style="width: .01%;"><label class="vertical-label">N/C</label></th>
-  <th style="width: 90%;"><label class="horiz-label">Report &amp; Recommendations</label></th>
+  <th class="th_f">Visual Brake Check</th>
+  <th class="th_m"><label class="vertical-label crimson">Red</label></th>
+  <th class="th_m"><label class="vertical-label darkgoldenrod">Amber</label></th>
+  <th class="th_m"><label class="vertical-label greenyellow">Green</label></th>
+  <th class="th_m"><label class="vertical-label">N/C</label></th>
+  <th class="th_l"><label class="horiz-label">Report &amp; Recommendations</label></th>
  </tr>
  <tr>
   <td>
@@ -345,12 +358,12 @@
   </td>
  </tr>
  <tr>
-  <th style="width: 6%;">Visual Underhood Check</th>
-  <th style="width: .01%;"><label class="vertical-label crimson">Red</label></th>
-  <th style="width: .01%;"><label class="vertical-label darkgoldenrod">Amber</label></th>
-  <th style="width: .01%;"><label class="vertical-label greenyellow">Green</label></th>
-  <th style="width: .01%;"><label class="vertical-label">N/C</label></th>
-  <th style="width: 90%;"><label class="horiz-label">Report &amp; Recommendations</label></th>
+  <th class="th_f">Visual Underhood Check</th>
+  <th class="th_m"><label class="vertical-label crimson">Red</label></th>
+  <th class="th_m"><label class="vertical-label darkgoldenrod">Amber</label></th>
+  <th class="th_m"><label class="vertical-label greenyellow">Green</label></th>
+  <th class="th_m"><label class="vertical-label">N/C</label></th>
+  <th class="th_l"><label class="horiz-label">Report &amp; Recommendations</label></th>
  </tr>
  <tr>
   <td>
@@ -576,12 +589,12 @@
   </td>
  </tr>
  <tr>
-  <th style="width: 6%;">Tire Tread Depth and Pressure Check</th>
-  <th style="width: .01%;"><label class="vertical-label crimson">Red</label></th>
-  <th style="width: .01%;"><label class="vertical-label darkgoldenrod">Amber</label></th>
-  <th style="width: .01%;"><label class="vertical-label greenyellow">Green</label></th>
-  <th style="width: .01%;"><label class="vertical-label">N/C</label></th>
-  <th style="width: 90%;">
+  <th class="th_f">Tire Tread Depth and Pressure Check</th>
+  <th class="th_m"><label class="vertical-label crimson">Red</label></th>
+  <th class="th_m"><label class="vertical-label darkgoldenrod">Amber</label></th>
+  <th class="th_m"><label class="vertical-label greenyellow">Green</label></th>
+  <th class="th_m"><label class="vertical-label">N/C</label></th>
+  <th class="th_l">
    <table>
     <tbody><tr>
      <th colspan="3"><label class="horiz-label">Depth mm</label></th>
@@ -614,9 +627,9 @@
   <td class="last-column">
    <table>
     <tbody><tr>
-     <td style="width: 100px;"><input style="min-height: 12px;" type="text" name="r15c5s1" value="  "></td>
-     <td style="width: 100px;"><input style="min-height: 12px;" type="text" name="r15c5s2" value="  "></td>
-     <td style="width: 100px;"><input style="min-height: 12px;" type="text" name="r15c5s3" value="  "></td>
+     <td style="width: 100px;"><input class="depth_inp" type="text" name="r15c5s1" value="  "></td>
+     <td style="width: 100px;"><input class="depth_inp" type="text" name="r15c5s2" value="  "></td>
+     <td style="width: 100px;"><input class="depth_inp" type="text" name="r15c5s3" value="  "></td>
      <td class="last-column">
       <textarea rows="2" cols="45" style="min-width:180px" type="text" name="r15c5s4"></textarea>
      </td>
@@ -654,9 +667,9 @@
   <td class="last-column">
    <table>
     <tbody><tr>
-     <td style="width: 100px;"><input style="min-height: 12px;" type="text" name="r16c5s1" value="  "></td>
-     <td style="width: 100px;"><input style="min-height: 12px;" type="text" name="r16c5s2" value="  "></td>
-     <td style="width: 100px;"><input style="min-height: 12px;" type="text" name="r16c5s3" value="  "></td>
+     <td style="width: 100px;"><input class="depth_inp" type="text" name="r16c5s1" value="  "></td>
+     <td style="width: 100px;"><input class="depth_inp" type="text" name="r16c5s2" value="  "></td>
+     <td style="width: 100px;"><input class="depth_inp" type="text" name="r16c5s3" value="  "></td>
      <td class="last-column">
       <textarea rows="2" cols="45" style="min-width:180px" type="text" name="r16c5s4"></textarea>
      </td>
@@ -694,9 +707,9 @@
   <td class="last-column">
    <table>
     <tbody><tr>
-     <td style="width: 100px;"><input style="min-height: 12px;" type="text" name="r17c5s1" value="  "></td>
-     <td style="width: 100px;"><input style="min-height: 12px;" type="text" name="r17c5s2" value="  "></td>
-     <td style="width: 100px;"><input style="min-height: 12px;" type="text" name="r17c5s3" value="  "></td>
+     <td style="width: 100px;"><input class="depth_inp" type="text" name="r17c5s1" value="  "></td>
+     <td style="width: 100px;"><input class="depth_inp" type="text" name="r17c5s2" value="  "></td>
+     <td style="width: 100px;"><input class="depth_inp" type="text" name="r17c5s3" value="  "></td>
      <td class="last-column">
       <textarea rows="2" cols="45" style="min-width:180px" type="text" name="r17c5s4"></textarea>
      </td>
@@ -735,9 +748,9 @@
   <td class="last-column">
    <table>
     <tbody><tr>
-     <td style="width: 100px;"><input style="min-height: 12px;" type="text" name="r18c5s1" value="  "></td>
-     <td style="width: 100px;"><input style="min-height: 12px;" type="text" name="r18c5s2" value="  "></td>
-     <td style="width: 100px;"><input style="min-height: 12px;" type="text" name="r18c5s3" value="  "></td>
+     <td style="width: 100px;"><input class="depth_inp" type="text" name="r18c5s1" value="  "></td>
+     <td style="width: 100px;"><input class="depth_inp" type="text" name="r18c5s2" value="  "></td>
+     <td style="width: 100px;"><input class="depth_inp" type="text" name="r18c5s3" value="  "></td>
      <td class="last-column">
       <textarea rows="2" cols="45" style="min-width:180px" type="text" name="r18c5s4"></textarea>
      </td>
@@ -757,12 +770,12 @@
   </td>
  </tr>
  <tr>
-  <th style="width: 6%;">Visual Exterior Check</th>
-  <th style="width: .01%;"><label class="vertical-label crimson">Red</label></th>
-  <th style="width: .01%;"><label class="vertical-label darkgoldenrod">Amber</label></th>
-  <th style="width: .01%;"><label class="vertical-label greenyellow">Green</label></th>
-  <th style="width: .01%;"><label class="vertical-label">N/C</label></th>
-  <th style="width: 90%;"><label class="horiz-label">Report &amp; Recommendations</label></th>
+  <th class="th_f">Visual Exterior Check</th>
+  <th class="th_m"><label class="vertical-label crimson">Red</label></th>
+  <th class="th_m"><label class="vertical-label darkgoldenrod">Amber</label></th>
+  <th class="th_m"><label class="vertical-label greenyellow">Green</label></th>
+  <th class="th_m"><label class="vertical-label">N/C</label></th>
+  <th class="th_l"><label class="horiz-label">Report &amp; Recommendations</label></th>
  </tr>
  <tr>
   <td>
@@ -1081,12 +1094,12 @@
   </td>
  </tr>
  <tr>
-  <th style="width: 6%;">Visual Interior Check</th>
-  <th style="width: .01%;"><label class="vertical-label crimson">Red</label></th>
-  <th style="width: .01%;"><label class="vertical-label darkgoldenrod">Amber</label></th>
-  <th style="width: .01%;"><label class="vertical-label greenyellow">Green</label></th>
-  <th style="width: .01%;"><label class="vertical-label">N/C</label></th>
-  <th style="width: 90%;"><label class="horiz-label">Report &amp; Recommendations</label></th>
+  <th class="th_f">Visual Interior Check</th>
+  <th class="th_m"><label class="vertical-label crimson">Red</label></th>
+  <th class="th_m"><label class="vertical-label darkgoldenrod">Amber</label></th>
+  <th class="th_m"><label class="vertical-label greenyellow">Green</label></th>
+  <th class="th_m"><label class="vertical-label">N/C</label></th>
+  <th class="th_l"><label class="horiz-label">Report &amp; Recommendations</label></th>
  </tr>
  <tr>
   <td>
