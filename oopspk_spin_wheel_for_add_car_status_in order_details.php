@@ -34,17 +34,19 @@ function car_status_single_order_meta_box() {
             });
             // Attach a click event to a button or element that will trigger the AJAX request
             $('#sendMailCarStatus').on('click', function () {
-                var printContent = $('#printableArea').html();
-                var printContent1 = $('#header').html();
+                var headerContent = $('#header').html();
+                var mainContent = $('#printableArea').html();
                 var originalContent = $('body').html();
-                var htmlData = printContent1 + printContent;
+                var headerContent = headerContent;
+                var mainContent = mainContent;
                 // Make an AJAX request
                 jQuery.ajax({
                     type: 'POST',
                     url: '<?php echo admin_url('admin-ajax.php');?>',
                     data: {
                         action: 'generate_pdf_and_send_email',
-                        htmlData: htmlData,
+                        headerContent: headerContent,
+                        mainContent: mainContent,
                     },
                     success: function(response) {
                         // Handle the response from the server (if needed)
@@ -53,13 +55,11 @@ function car_status_single_order_meta_box() {
                 });
             });
         });
-
-
-
     </script>
-    <button type="button" class="button" style="vertical-align:middle" id="printCarStatus"><span>Print </span></button>
-
-    <button type="button" class="button" style="vertical-align:middle" id="sendMailCarStatus"><span>Send Mail </span></button>
+    <div class="buttons">
+        <button type="button" class="button" style="vertical-align:middle" id="printCarStatus"><span>Print </span></button>
+        <button type="button" class="button" style="vertical-align:middle" id="sendMailCarStatus"><span>Send Mail </span></button>
+    </div>
     <div id="car_status">
         <style>
             @media print {
@@ -232,7 +232,7 @@ function car_status_single_order_meta_box() {
                 cursor: pointer;
                 margin: 5px;
                 width: 100px;
-                float: inline-end;
+                float:right;
             }
 
             .button span {
@@ -272,8 +272,7 @@ function car_status_single_order_meta_box() {
 
             }
         </style>
-        <div id="header-container">
-            <header id="header" style="width: 98%; margin: 0 auto;">
+        <header id="header" style="width: 98%; margin: 0 auto;">
                 <div class="company-information">
                     <h1 class="title ">Free Oil Change</h1>
                 </div>
@@ -336,7 +335,6 @@ function car_status_single_order_meta_box() {
                     <?php echo reset($order_meta["car_info"]); ?>
                 </div>
             </header>
-        </div>
         <div id="printableArea">
             <table style="margin-top: 50px;">
                 <tbody>

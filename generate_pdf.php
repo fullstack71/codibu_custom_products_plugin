@@ -7,6 +7,28 @@ use Dompdf\Options;
 // Function to generate PDF and send email
 function generate_pdf_and_send_email() {
 
+// Specify the path to your HTML file
+    $htmlFilePath = plugin_dir_path(__FILE__) . '/report.html';
+
+// Read the contents of the HTML file into a string
+    $htmlContent = file_get_contents($htmlFilePath);
+
+// Define the block to replace
+    $startMarker = '<body>';
+    $endMarker = '</body>';
+
+// Define the new code
+    $newCode = '<body><div id="car_status"><header id="header" style="width: 98%; margin: 0 auto;">' .stripslashes($_POST["headerContent"]). '</header><div id="printableArea">' . stripslashes($_POST["mainContent"]) . '</div></body>';
+
+// Create a regular expression pattern to match the block
+    $pattern = '/'.preg_quote($startMarker, '/').'(.*?)'.preg_quote($endMarker, '/').'/s';
+
+// Replace the block with the new code in the HTML content
+    $htmlContent = preg_replace($pattern, $newCode, $htmlContent);
+
+// Write the modified content back to the HTML file
+    file_put_contents($htmlFilePath, $htmlContent);
+
 
     // Get the HTML data from the AJAX request
     //$htmlData = isset($_POST['htmlData']) ? $_POST['htmlData'] : '';
