@@ -26,10 +26,9 @@ function car_status_single_order_meta_box() {
     <script>
         jQuery(document).ready(function ($) {
             $('#printCarStatus').on('click', function () {
-                var printContent = $('#printableArea').html();
-                var printContent1 = $('#header').html();
+                var printContent = $('#car_status').html();
                 var originalContent = $('body').html();
-                $('body').html(printContent1 + printContent);
+                $('body').html(printContent);
                 window.print();
                 $('body').html(originalContent);
             });
@@ -131,7 +130,10 @@ function car_status_single_order_meta_box() {
             }
             .document-body-content{
                 position: relative;
-                max-width: 960px;
+                max-width: 100%;
+            }
+            .document-body-content table {
+                width: 100% !important;
             }
             .td_tilte {
                 border: 0px solid #1D2327;
@@ -181,26 +183,22 @@ function car_status_single_order_meta_box() {
             td {
                 text-align: center;
             }
-
-            {    width: 30px;
-                margin: 5px;
-            }
             td .check-box-size{
-                width: 20px;
-                height: 20px;
+                width: 15px;
+                height: 15px;
             }
             td .check-box-crimson{
-                outline-style: solid;
+                outline-style: auto;
                 outline-width: 5px;
                 outline-color: crimson;
             }
             td .check-box-darkgoldenrod{
-                outline-style: solid;
+                outline-style: auto;
                 outline-width: 5px;
                 outline-color: darkgoldenrod;
             }
             td .check-box-greenyellow{
-                outline-style: solid;
+                outline-style: auto;
                 outline-width: 5px;
                 outline-color: greenyellow;
             }
@@ -261,9 +259,21 @@ function car_status_single_order_meta_box() {
                 opacity: 1;
                 right: 0;
             }
+            .depth_inp {
+                width:100px;
+            }
+            .th_1{
+                width:250px;
+            }
+            .th_2,.th_3,.th_4,.th_5,{
+                width:50px;
+            }
+            .th_6 {
+
+            }
         </style>
-        <div id="header-container" style="">
-            <header id="header" style="width: 80%; margin: 0 auto;">
+        <div id="header-container">
+            <header id="header" style="width: 98%; margin: 0 auto;">
                 <div class="company-information">
                     <h1 class="title ">Free Oil Change</h1>
                 </div>
@@ -335,12 +345,12 @@ function car_status_single_order_meta_box() {
                 $car_status = unserialize($car_status);
                 ?>
                 <tr>
-                    <th class="th_f">Visual Brake Check</th>
-                    <th class="th_m"><label class="vertical-label crimson">Red</label></th>
-                    <th class="th_m"><label class="vertical-label darkgoldenrod">Amber</label></th>
-                    <th class="th_m"><label class="vertical-label greenyellow">Green</label></th>
-                    <th class="th_m"><label class="vertical-label">N/C</label></th>
-                    <th class="th_l"><label class="horiz-label">Report &amp; Recommendations</label></th>
+                    <th class="th_1">Visual Brake Check</th>
+                    <th class="th_2"><label class="vertical-label crimson">Red</label></th>
+                    <th class="th_3"><label class="vertical-label darkgoldenrod">Amber</label></th>
+                    <th class="th_4"><label class="vertical-label greenyellow">Green</label></th>
+                    <th class="th_5"><label class="vertical-label">N/C</label></th>
+                    <th class="th_6"><label class="horiz-label">Report &amp; Recommendations</label></th>
                 </tr>
                 <tr>
                     <td>
@@ -359,7 +369,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r1c4" <?php echo ($car_status["r1c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r1c5"><?php echo $car_status["r1c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r1c5"><?php echo $car_status["r1c5"]; ?></textarea>
                     </td>
                 </tr>
                 <!--    sub cell-->
@@ -394,7 +404,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r2c4" <?php echo ($car_status["r2c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r2c5"><?php echo $car_status["r2c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r2c5"><?php echo $car_status["r2c5"]; ?></textarea>
                     </td>
                 </tr>
                 <!--    sub cell-->
@@ -429,7 +439,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r3c4" <?php echo ($car_status["r3c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r3c5"><?php echo $car_status["r3c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r3c5"><?php echo $car_status["r3c5"]; ?></textarea>
                     </td>
                 </tr>
                 <!--    sub cell-->
@@ -464,7 +474,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r4c4" <?php echo ($car_status["r4c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r4c5"><?php echo $car_status["r4c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r4c5"><?php echo $car_status["r4c5"]; ?></textarea>
                     </td>
                 </tr>
                 <!--    sub cell-->
@@ -483,12 +493,12 @@ function car_status_single_order_meta_box() {
                     </td>
                 </tr>
                 <tr>
-                    <th class="th_f">Visual Underhood Check</th>
-                    <th class="th_m"><label class="vertical-label crimson">Red</label></th>
-                    <th class="th_m"><label class="vertical-label darkgoldenrod">Amber</label></th>
-                    <th class="th_m"><label class="vertical-label greenyellow">Green</label></th>
-                    <th class="th_m"><label class="vertical-label">N/C</label></th>
-                    <th class="th_l"><label class="horiz-label">Report &amp; Recommendations</label></th>
+                    <th class="th_1">Visual Underhood Check</th>
+                    <th class="th_2"><label class="vertical-label crimson">Red</label></th>
+                    <th class="th_3"><label class="vertical-label darkgoldenrod">Amber</label></th>
+                    <th class="th_4"><label class="vertical-label greenyellow">Green</label></th>
+                    <th class="th_5"><label class="vertical-label">N/C</label></th>
+                    <th class="th_6"><label class="horiz-label">Report &amp; Recommendations</label></th>
                 </tr>
                 <tr>
                     <td>
@@ -507,7 +517,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r5c4" <?php echo ($car_status["r5c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r5c5"><?php echo $car_status["r5c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r5c5"><?php echo $car_status["r5c5"]; ?></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -527,7 +537,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r6c4" <?php echo ($car_status["r6c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r6c5"><?php echo $car_status["r6c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r6c5"><?php echo $car_status["r6c5"]; ?></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -547,7 +557,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r7c4" <?php echo ($car_status["r7c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r7c5"><?php echo $car_status["r7c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r7c5"><?php echo $car_status["r7c5"]; ?></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -567,7 +577,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r8c4" <?php echo ($car_status["r8c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r8c5"><?php echo $car_status["r8c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r8c5"><?php echo $car_status["r8c5"]; ?></textarea>
                     </td>
                 </tr>
                 <!--    sub cell-->
@@ -610,7 +620,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r9c4" <?php echo ($car_status["r9c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r9c5"><?php echo $car_status["r9c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r9c5"><?php echo $car_status["r9c5"]; ?></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -630,7 +640,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r10c4" <?php echo ($car_status["r10c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r10c5"><?php echo $car_status["r10c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r10c5"><?php echo $car_status["r10c5"]; ?></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -650,7 +660,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r11c4" <?php echo ($car_status["r11c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r11c5"><?php echo $car_status["r11c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r11c5"><?php echo $car_status["r11c5"]; ?></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -670,7 +680,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r12c4" <?php echo ($car_status["r12c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r12c5"><?php echo $car_status["r12c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r12c5"><?php echo $car_status["r12c5"]; ?></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -690,7 +700,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r13c4" <?php echo ($car_status["r13c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r13c5"><?php echo $car_status["r13c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r13c5"><?php echo $car_status["r13c5"]; ?></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -710,16 +720,16 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r14c4" <?php echo ($car_status["r14c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r14c5"><?php echo $car_status["r14c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r14c5"><?php echo $car_status["r14c5"]; ?></textarea>
                     </td>
                 </tr>
                 <tr>
-                    <th class="th_f">Tire Tread Depth and Pressure Check</th>
-                    <th class="th_m"><label class="vertical-label crimson">Red</label></th>
-                    <th class="th_m"><label class="vertical-label darkgoldenrod">Amber</label></th>
-                    <th class="th_m"><label class="vertical-label greenyellow">Green</label></th>
-                    <th class="th_m"><label class="vertical-label">N/C</label></th>
-                    <th>
+                    <th class="th_1">Tire Tread Depth and Pressure Check</th>
+                    <th class="th_2"><label class="vertical-label crimson">Red</label></th>
+                    <th class="th_3"><label class="vertical-label darkgoldenrod">Amber</label></th>
+                    <th class="th_4"><label class="vertical-label greenyellow">Green</label></th>
+                    <th class="th_5"><label class="vertical-label">N/C</label></th>
+                    <th class="th_6">
                         <table>
                             <tr>
                                 <th colspan="3"><label class="horiz-label">Depth mm</label></th>
@@ -752,11 +762,11 @@ function car_status_single_order_meta_box() {
                     <td class="last-column">
                         <table>
                             <tr>
-                                <td style="width: 100px;"><input class="depth_inp" type="text" name="r15c5s1" value=" <?php echo $car_status["r15c5s1"]?>" ></td>
-                                <td style="width: 100px;"><input class="depth_inp" type="text" name="r15c5s2" value=" <?php echo $car_status["r15c5s2"]?>" ></td>
-                                <td style="width: 100px;"><input class="depth_inp" type="text" name="r15c5s3" value=" <?php echo $car_status["r15c5s3"]?>" ></td>
+                                <td><input class="depth_inp" type="text" name="r15c5s1" value=" <?php echo $car_status["r15c5s1"]?>" ></td>
+                                <td><input class="depth_inp" type="text" name="r15c5s2" value=" <?php echo $car_status["r15c5s2"]?>" ></td>
+                                <td><input class="depth_inp" type="text" name="r15c5s3" value=" <?php echo $car_status["r15c5s3"]?>" ></td>
                                 <td class="last-column">
-                                    <textarea rows="2" cols="45" type="text"  name="r15c5s4"><?php echo $car_status["r15c5s4"]?></textarea>
+                                    <textarea rows="2" cols="68" type="text"  name="r15c5s4"><?php echo $car_status["r15c5s4"]?></textarea>
                                 </td>
                             </tr>
                         </table>
@@ -792,11 +802,11 @@ function car_status_single_order_meta_box() {
                     <td class="last-column">
                         <table>
                             <tr>
-                                <td style="width: 100px;"><input class="depth_inp" type="text" name="r16c5s1" value=" <?php echo $car_status["r16c5s1"]?>" ></td>
-                                <td style="width: 100px;"><input class="depth_inp" type="text" name="r16c5s2" value=" <?php echo $car_status["r16c5s2"]?>" ></td>
-                                <td style="width: 100px;"><input class="depth_inp" type="text" name="r16c5s3" value=" <?php echo $car_status["r16c5s3"]?>" ></td>
+                                <td><input class="depth_inp" type="text" name="r16c5s1" value=" <?php echo $car_status["r16c5s1"]?>" ></td>
+                                <td><input class="depth_inp" type="text" name="r16c5s2" value=" <?php echo $car_status["r16c5s2"]?>" ></td>
+                                <td><input class="depth_inp" type="text" name="r16c5s3" value=" <?php echo $car_status["r16c5s3"]?>" ></td>
                                 <td class="last-column">
-                                    <textarea rows="2" cols="45" type="text"  name="r16c5s4"><?php echo $car_status["r16c5s4"]?></textarea>
+                                    <textarea rows="2" cols="68" type="text"  name="r16c5s4"><?php echo $car_status["r16c5s4"]?></textarea>
                                 </td>
                             </tr>
                         </table>
@@ -832,11 +842,11 @@ function car_status_single_order_meta_box() {
                     <td class="last-column">
                         <table>
                             <tr>
-                                <td style="width: 100px;"><input class="depth_inp" type="text" name="r17c5s1" value=" <?php echo $car_status["r17c5s1"]?>" ></td>
-                                <td style="width: 100px;"><input class="depth_inp" type="text" name="r17c5s2" value=" <?php echo $car_status["r17c5s2"]?>" ></td>
-                                <td style="width: 100px;"><input class="depth_inp" type="text" name="r17c5s3" value=" <?php echo $car_status["r17c5s3"]?>" ></td>
+                                <td><input class="depth_inp" type="text" name="r17c5s1" value=" <?php echo $car_status["r17c5s1"]?>" ></td>
+                                <td><input class="depth_inp" type="text" name="r17c5s2" value=" <?php echo $car_status["r17c5s2"]?>" ></td>
+                                <td><input class="depth_inp" type="text" name="r17c5s3" value=" <?php echo $car_status["r17c5s3"]?>" ></td>
                                 <td class="last-column">
-                                    <textarea rows="2" cols="45" type="text"  name="r17c5s4"><?php echo $car_status["r17c5s4"]?></textarea>
+                                    <textarea rows="2" cols="68" type="text"  name="r17c5s4"><?php echo $car_status["r17c5s4"]?></textarea>
                                 </td>
                             </tr>
                         </table>
@@ -873,11 +883,11 @@ function car_status_single_order_meta_box() {
                     <td class="last-column">
                         <table>
                             <tr>
-                                <td style="width: 100px;"><input class="depth_inp" type="text" name="r18c5s1" value=" <?php echo $car_status["r18c5s1"]?>" ></td>
-                                <td style="width: 100px;"><input class="depth_inp" type="text" name="r18c5s2" value=" <?php echo $car_status["r18c5s2"]?>" ></td>
-                                <td style="width: 100px;"><input class="depth_inp" type="text" name="r18c5s3" value=" <?php echo $car_status["r18c5s3"]?>" ></td>
+                                <td><input class="depth_inp" type="text" name="r18c5s1" value=" <?php echo $car_status["r18c5s1"]?>" ></td>
+                                <td><input class="depth_inp" type="text" name="r18c5s2" value=" <?php echo $car_status["r18c5s2"]?>" ></td>
+                                <td><input class="depth_inp" type="text" name="r18c5s3" value=" <?php echo $car_status["r18c5s3"]?>" ></td>
                                 <td class="last-column">
-                                    <textarea rows="2" cols="45" type="text"  name="r18c5s4"><?php echo $car_status["r18c5s4"]?></textarea>
+                                    <textarea rows="2" cols="68" type="text"  name="r18c5s4"><?php echo $car_status["r18c5s4"]?></textarea>
                                 </td>
                             </tr>
                         </table>
@@ -895,12 +905,12 @@ function car_status_single_order_meta_box() {
                     </td>
                 </tr>
                 <tr>
-                    <th class="th_f">Visual Exterior Check</th>
-                    <th class="th_m"><label class="vertical-label crimson">Red</label></th>
-                    <th class="th_m"><label class="vertical-label darkgoldenrod">Amber</label></th>
-                    <th class="th_m"><label class="vertical-label greenyellow">Green</label></th>
-                    <th class="th_m"><label class="vertical-label">N/C</label></th>
-                    <th class="th_l"><label class="horiz-label">Report &amp; Recommendations</label></th>
+                    <th class="th_1">Visual Exterior Check</th>
+                    <th class="th_2"><label class="vertical-label crimson">Red</label></th>
+                    <th class="th_3"><label class="vertical-label darkgoldenrod">Amber</label></th>
+                    <th class="th_4"><label class="vertical-label greenyellow">Green</label></th>
+                    <th class="th_5"><label class="vertical-label">N/C</label></th>
+                    <th class="th_6"><label class="horiz-label">Report &amp; Recommendations</label></th>
                 </tr>
                 <tr>
                     <td>
@@ -919,7 +929,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r19c4" <?php echo ($car_status["r19c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r19c5"><?php echo $car_status["r19c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r19c5"><?php echo $car_status["r19c5"]; ?></textarea>
                     </td>
                 </tr>
                 <!--    sub cell-->
@@ -980,7 +990,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r20c4" <?php echo ($car_status["r20c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r20c5"><?php echo $car_status["r20c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r20c5"><?php echo $car_status["r20c5"]; ?></textarea>
                     </td>
                 </tr>
                 <!--    sub cell-->
@@ -1021,7 +1031,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r21c4" <?php echo ($car_status["r21c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r21c5"><?php echo $car_status["r21c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r21c5"><?php echo $car_status["r21c5"]; ?></textarea>
                     </td>
                 </tr>
                 <!--    sub cell-->
@@ -1067,7 +1077,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r22c4" <?php echo ($car_status["r22c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r22c5"><?php echo $car_status["r22c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r22c5"><?php echo $car_status["r22c5"]; ?></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -1087,7 +1097,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r23c4" <?php echo ($car_status["r23c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r23c5"><?php echo $car_status["r23c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r23c5"><?php echo $car_status["r23c5"]; ?></textarea>
                     </td>
                 </tr>
                 <!--    sub cell-->
@@ -1128,7 +1138,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r24c4" <?php echo ($car_status["r24c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r24c5"><?php echo $car_status["r24c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r24c5"><?php echo $car_status["r24c5"]; ?></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -1148,7 +1158,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r25c4" <?php echo ($car_status["r25c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r25c5"><?php echo $car_status["r25c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r25c5"><?php echo $car_status["r25c5"]; ?></textarea>
                     </td>
                 </tr>
                 <!--    sub cell-->
@@ -1194,7 +1204,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r26c4" <?php echo ($car_status["r26c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r26c5"><?php echo $car_status["r26c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r26c5"><?php echo $car_status["r26c5"]; ?></textarea>
                     </td>
                 </tr>
                 <!--    sub cell-->
@@ -1219,12 +1229,12 @@ function car_status_single_order_meta_box() {
                     </td>
                 </tr>
                 <tr>
-                    <th class="th_f">Visual Interior Check</th>
-                    <th class="th_m"><label class="vertical-label crimson">Red</label></th>
-                    <th class="th_m"><label class="vertical-label darkgoldenrod">Amber</label></th>
-                    <th class="th_m"><label class="vertical-label greenyellow">Green</label></th>
-                    <th class="th_m"><label class="vertical-label">N/C</label></th>
-                    <th class="th_l"><label class="horiz-label">Report &amp; Recommendations</label></th>
+                    <th class="th_1">Visual Interior Check</th>
+                    <th class="th_2"><label class="vertical-label crimson">Red</label></th>
+                    <th class="th_3"><label class="vertical-label darkgoldenrod">Amber</label></th>
+                    <th class="th_4"><label class="vertical-label greenyellow">Green</label></th>
+                    <th class="th_5"><label class="vertical-label">N/C</label></th>
+                    <th class="th_6"><label class="horiz-label">Report &amp; Recommendations</label></th>
                 </tr>
                 <tr>
                     <td>
@@ -1243,7 +1253,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r27c4" <?php echo ($car_status["r27c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r27c5"><?php echo $car_status["r27c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r27c5"><?php echo $car_status["r27c5"]; ?></textarea>
                     </td>
                 </tr>
                 <!--    sub cell-->
@@ -1284,7 +1294,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r28c4" <?php echo ($car_status["r28c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r28c5"><?php echo $car_status["r28c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r28c5"><?php echo $car_status["r28c5"]; ?></textarea>
                     </td>
                 </tr>
 
@@ -1326,7 +1336,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r29c4" <?php echo ($car_status["r29c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r29c5"><?php echo $car_status["r29c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r29c5"><?php echo $car_status["r29c5"]; ?></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -1346,7 +1356,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r30c4" <?php echo ($car_status["r30c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r30c5"><?php echo $car_status["r30c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r30c5"><?php echo $car_status["r30c5"]; ?></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -1366,7 +1376,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r31c4" <?php echo ($car_status["r31c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r31c5"><?php echo $car_status["r31c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r31c5"><?php echo $car_status["r31c5"]; ?></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -1386,7 +1396,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r32c4" <?php echo ($car_status["r32c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r32c5"><?php echo $car_status["r32c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r32c5"><?php echo $car_status["r32c5"]; ?></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -1406,7 +1416,7 @@ function car_status_single_order_meta_box() {
                         <input class="check-box-size" type="checkbox" name="r33c4" <?php echo ($car_status["r33c4"] == "on" ? "checked" : "") ?>>
                     </td>
                     <td class="last-column">
-                        <textarea rows="2" cols="120" type="text" name="r33c5"><?php echo $car_status["r33c5"]; ?></textarea>
+                        <textarea rows="2" cols="118" type="text" name="r33c5"><?php echo $car_status["r33c5"]; ?></textarea>
                     </td>
                 </tr>
                 </tbody>
