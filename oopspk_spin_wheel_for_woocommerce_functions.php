@@ -25,31 +25,6 @@ function oopspk_woocommerce_modify_pro_management_scripts() {
 }
 add_action( 'admin_enqueue_scripts', 'oopspk_woocommerce_modify_pro_management_scripts');
 
-//
-
-
-add_action( 'wp_head', 'woocommerce_clear_cart_url' );
-
-function woocommerce_clear_cart_url() {
-
-
-//echo $url = home_url().'last-step/';
-    $full_url = 'http';
-    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
-        $full_url .= 's';
-    }
-    $full_url .= '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-    if($full_url == 'https://freeoilchange.com/last-step/'){
-        //echo'yes';
-    }
-    else{
-        WC()->cart->empty_cart();
-    }
-
-
-
-}
-
 /*--------------------------------------------*/
 # Wp enqueue Javascript Frontend
 /*--------------------------------------------*/

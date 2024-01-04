@@ -83,12 +83,12 @@ function codibu_wc_pip_before_body($type, $action, $document, $order){
             }
             echo '</ul>';
         }
-        $customer_user_id = get_post_meta($order->id, 'car_info', true);
+        $car_info = get_post_meta($order->id, 'car_info', true);
         $vin_number_meta_value = get_post_meta( $order->id, "Car Vin Number" );
 
         echo '<h3>Car Info</h3>';
         echo '<h5>Vin Number: ' .reset($vin_number_meta_value).'<h5>';
-        echo $customer_user_id;
+        echo $car_info;
     }
 }
 add_action('wc_pip_before_body','codibu_wc_pip_before_body',10, 4);

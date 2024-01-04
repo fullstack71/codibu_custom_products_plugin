@@ -59,6 +59,20 @@ function generate_pdf_and_send_email() {
     $pdfFilePath = plugin_dir_path(__FILE__) . '/report.pdf';
     file_put_contents($pdfFilePath, $dompdf->output());
 
+    $attachments = array(plugin_dir_path(__FILE__) . '/report.pdf');
+
+    // Get the post author ID
+    $author_id = get_post_field('post_author', $_GET['post']);
+
+    // Get user data based on the author ID
+    $user_data = get_userdata($author_id);
+
+    if ($user_data) {
+        $user_email = $user_data->user_email;
+        wp_mail($user_email, 'Free Oil Change' , '','Free Oil Change',$attachments);
+    } else {
+        echo "User not found or email not available.";
+    }
     // Always exit to avoid extra output
     exit();
 }
