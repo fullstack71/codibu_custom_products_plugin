@@ -218,22 +218,10 @@ function car_status_single_order_meta_box() {
             label {
                 vertical-align: text-top;
             }
-            .button {
-                display: inline-block;
-                border-radius: 4px;
-                background-color: #f4511e;
-                border: none;
-                color: #FFFFFF;
-                text-align: center;
-                font-size: 28px;
-                padding: 20px;
-                width: 200px;
-                transition: all 0.5s;
-                cursor: pointer;
-                margin: 5px;
+            .buttons .button {
                 width: 100px;
-                float:right;
-                margin: 5px;
+                float: right;
+                margin: 5px !important;
             }
 
             .button span {
