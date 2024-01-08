@@ -39,6 +39,7 @@ function car_status_single_order_meta_box() {
                 var originalContent = $('body').html();
                 var headerContent = headerContent;
                 var mainContent = mainContent;
+                var workId = '<?php echo get_the_ID(); ?>';
                 // Make an AJAX request
                 jQuery.ajax({
                     type: 'POST',
@@ -47,6 +48,7 @@ function car_status_single_order_meta_box() {
                         action: 'generate_pdf_and_send_email',
                         headerContent: headerContent,
                         mainContent: mainContent,
+                        workId: workId
                     },
                     success: function(response) {
                         // Handle the response from the server (if needed)
@@ -262,45 +264,45 @@ function car_status_single_order_meta_box() {
             }
         </style>
         <header id="header" style="width: 98%; margin: 0 auto;">
-                <div class="company-information">
-                    <h1 class="title ">Free Oil Change</h1>
+            <div class="company-information">
+                <h1 class="title ">Free Oil Change</h1>
+            </div>
+            <h3 class="order-info">Invoice for order <span class="order-number visible-print-inline"><?php echo $order->ID; ?></span></h3>
+            <h5 class="order-date">Order Date: <?php echo date("Y/m/d", strtotime($order->post_date)); ?></h5>
+            <div class="customer-addresses">
+                <div class="column customer-address billing-address left">
+                    <h3>Billing Address</h3>
+                    <address class="customer-addresss">
+                        <?php echo $_billing_first_name.' '.$_billing_last_name; ?><br>
+                        <?php echo $_shipping_company; ?><br>
+                        <?php echo $_billing_address_1; ?><br>
+                        <?php echo $_billing_address_2; ?><br>
+                        <?php echo $_billing_c_s_p; ?><br>
+                    </address>
                 </div>
-                <h3 class="order-info">Invoice for order <span class="order-number visible-print-inline"><?php echo $order->ID; ?></span></h3>
-                <h5 class="order-date">Order Date: <?php echo date("Y/m/d", strtotime($order->post_date)); ?></h5>
-                <div class="customer-addresses">
-                    <div class="column customer-address billing-address left">
-                        <h3>Billing Address</h3>
-                        <address class="customer-addresss">
-                            <?php echo $_billing_first_name.' '.$_billing_last_name; ?><br>
-                            <?php echo $_shipping_company; ?><br>
-                            <?php echo $_billing_address_1; ?><br>
-                            <?php echo $_billing_address_2; ?><br>
-                            <?php echo $_billing_c_s_p; ?><br>
-                        </address>
-                    </div>
-                    <div class="column customer-address shipping-address left">
-                        <h3>Shipping Address</h3>
-                        <address class="customer-address">
-                            <?php echo $_shipping_first_name.' '.$_shipping_last_name; ?><br>
-                            <?php echo $_shipping_company; ?><br>
-                            <?php echo $_shipping_address_1; ?><br>
-                            <?php echo $_shipping_address_2; ?><br>
-                            <?php echo $_shipping_c_s_p; ?><br>
-                        </address>
-                    </div>
-                    <div class="column shipping-method left">
-                        <h3>Shipping Method</h3>
-                        <em class="shipping-method">
-                            No shipping
-                        </em>
-                    </div>
-                    <div class="clear"></div>
+                <div class="column customer-address shipping-address left">
+                    <h3>Shipping Address</h3>
+                    <address class="customer-address">
+                        <?php echo $_shipping_first_name.' '.$_shipping_last_name; ?><br>
+                        <?php echo $_shipping_company; ?><br>
+                        <?php echo $_shipping_address_1; ?><br>
+                        <?php echo $_shipping_address_2; ?><br>
+                        <?php echo $_shipping_c_s_p; ?><br>
+                    </address>
                 </div>
+                <div class="column shipping-method left">
+                    <h3>Shipping Method</h3>
+                    <em class="shipping-method">
+                        No shipping
+                    </em>
+                </div>
+                <div class="clear"></div>
+            </div>
 
-                <div class="document-body-content">
-                    <?php
-                    global $wpdb;
-                    $sql = "SELECT *
+            <div class="document-body-content">
+                <?php
+                global $wpdb;
+                $sql = "SELECT *
                             FROM `".$wpdb->prefix."comments`
                             INNER JOIN `".$wpdb->prefix."commentmeta` ON `".$wpdb->prefix."comments`.`comment_ID` = `".$wpdb->prefix."commentmeta`.`comment_id`
                             WHERE `".$wpdb->prefix."comments`.`comment_post_ID` = '".$order->id."'
@@ -308,22 +310,22 @@ function car_status_single_order_meta_box() {
                             AND `".$wpdb->prefix."commentmeta`.`meta_key` = 'is_customer_note'
                             AND `".$wpdb->prefix."commentmeta`.`meta_value` = '1'
                             ORDER BY `".$wpdb->prefix."comments`.`comment_ID` DESC";
-                    $comments = $wpdb->get_results($sql);
+                $comments = $wpdb->get_results($sql);
 
-                    if(count($comments)>=1){
-                        echo '<h3>Note</h3>';
-                        echo '<ol>';
-                        foreach($comments as $comment){
-                            echo '<li>'.$comment->comment_content.'</li>';
-                        }
-                        echo '</ol>';
+                if(count($comments)>=1){
+                    echo '<h3>Note</h3>';
+                    echo '<ol>';
+                    foreach($comments as $comment){
+                        echo '<li>'.$comment->comment_content.'</li>';
                     }
-                    ?>
-                    <h3>Car Info</h3>
-                    <h5>Vin Number: <?php echo reset($order_meta["Car Vin Number"]); ?></h5>
-                    <?php echo reset($order_meta["car_info"]); ?>
-                </div>
-            </header>
+                    echo '</ol>';
+                }
+                ?>
+                <h3>Car Info</h3>
+                <h5>Vin Number: <?php echo reset($order_meta["Car Vin Number"]); ?></h5>
+                <?php echo reset($order_meta["car_info"]); ?>
+            </div>
+        </header>
         <div id="printableArea">
             <table style="margin-top: 50px;">
                 <tbody>

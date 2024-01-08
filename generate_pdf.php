@@ -73,9 +73,11 @@ function generate_pdf_and_send_email() {
     $user_email   = $customer->get_email();
 
     //send email
-    wp_mail($user_email, 'Free Oil Change' , 'This is your car\'s current status','Free Oil Change',$attachments);
+    wp_mail($user_email, 'Free Oil Change' , 'Please find the attached file related to your car status. If you have any questions, please feel free to contact us. Thank you for choosing Freeoilchange.com','Free Oil Change',$attachments);
 
+    wp_send_json($user_email);
     // Always exit to avoid extra output
+
     exit();
 }
 
