@@ -60,19 +60,21 @@ function generate_pdf_and_send_email() {
     file_put_contents($pdfFilePath, $dompdf->output());
 
     $attachments = array(plugin_dir_path(__FILE__) . '/report.pdf');
-
     // Get the post author ID
-    $author_id = get_post_field('post_author', $_GET['post']);
+    $author_id = get_post_field('post_author', $_POST["workId"]);
 
-    // Get user data based on the author ID
-    $user_data = get_userdata($author_id);
+    // Get the user ID from an Order ID
+    $user_id = get_post_meta( $_POST["workId"], '_customer_user', true );
 
-    if ($user_data) {
-        $user_email = $user_data->user_email;
-        wp_mail($user_email, 'Free Oil Change' , '','Free Oil Change',$attachments);
-    } else {
-        echo "User not found or email not available.";
-    }
+    // Get an instance of the WC_Customer Object from the user ID
+    $customer = new WC_Customer( $user_id );
+
+    // Get account email
+    $user_email   = $customer->get_email();
+
+    //send email
+    wp_mail($user_email, 'Free Oil Change' , 'This is your car\'s current status','Free Oil Change',$attachments);
+
     // Always exit to avoid extra output
     exit();
 }

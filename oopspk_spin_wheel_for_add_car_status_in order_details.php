@@ -233,6 +233,7 @@ function car_status_single_order_meta_box() {
                 margin: 5px;
                 width: 100px;
                 float:right;
+                margin: 5px;
             }
 
             .button span {
