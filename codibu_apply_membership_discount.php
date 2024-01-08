@@ -63,6 +63,17 @@ function codibu_trigger_js_function() {
                 var vin_number = $(this).val();
                 updateCartProductPrice(vin_number);
             });
+
+            $('#selectVin').on('click', function () {
+                var vin_number = $('#select_vin_number').val();
+                updateCartProductPrice(vin_number);
+            });
+
+            $('#addVin').on('click', function () {
+                var vin_number = null;
+                updateCartProductPrice(vin_number);
+            });
+
             var vin_number = $('#select_vin_number').val();
             updateCartProductPrice(vin_number);
         });
