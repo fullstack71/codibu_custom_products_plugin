@@ -4,6 +4,7 @@ defined('ABSPATH') || die ("You can't access this file directyly !");
 
 $vin_numbers = get_user_meta($user_id, 'car_vin_numbers', true);
 $vin_numbers = unserialize($vin_numbers);
+$vin_numbers_count =count($vin_numbers);
 if ($vin_numbers){
     if ($_GET['post'] != null && $_GET['action'] == "edit") {
         $vin_number_meta_value= get_post_meta( get_the_ID(), "Car Vin Number" );
@@ -44,7 +45,11 @@ if ($vin_numbers){
 }
 ?>
     <script>
+        var count = <?php echo $vin_numbers_count; ?>
         jQuery(document).ready(function() {
+            if (count == 1){
+                carInfo(jQuery('#vinNumber').val());
+            }
             jQuery('#vinNumber').on('change', function() {
                 carInfo(this.value);
             });

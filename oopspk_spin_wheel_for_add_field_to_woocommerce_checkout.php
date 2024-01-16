@@ -2,6 +2,7 @@
 defined('ABSPATH') || die ("You can't access this file directyly !");
 
 function add_this_script_footer(){
+	//WC()->cart->empty_cart();
     $vin_numbers = get_user_meta(get_current_user_id(), 'car_vin_numbers', true);
     $vin_numbers = $vin_numbers ? unserialize($vin_numbers) : [];
     ?>
