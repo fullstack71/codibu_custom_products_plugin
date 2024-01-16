@@ -45,7 +45,7 @@ if ($vin_numbers){
 }
 ?>
     <script>
-        var count = <?php echo $vin_numbers_count; ?>
+        var count = <?php echo $vin_numbers_count; ?>;
         jQuery(document).ready(function() {
             if (count == 1){
                 carInfo(jQuery('#vinNumber').val());
