@@ -186,58 +186,16 @@ function car_info_in_woocommerce_order_meta($order_id, $vin){
     $data =  '<table style="width: 213%;" border="1" class="tabel_data_json">
     			<tbody>
                     <tr>
-                        <td class="td_tilte">VEHICLE DESCRIPTOR</td>
-                        <td>'.$responseArray['Results'][5]['Value'].'</td>
-                        <td class="td_tilte">MANUFACTURER NAME</td>
-                        <td>'.$responseArray['Results'][8]['Value'].'</td>
-                    </tr>
-                    <tr>
                         <td class="td_tilte">MODEL YEAR</td>
                         <td>'.$responseArray['Results'][10]['Value'].'</td>
-                        <td class="td_tilte">SERIES</td>
-                        <td>'.$responseArray['Results'][12]['Value'].'</td>
                     </tr>
                     <tr>
-                        <td class="td_tilte">PLANT COUNTRY</td>
-                        <td>'.$responseArray['Results'][15]['Value'].'</td>
-                        <td class="td_tilte">DOORS</td>
-                        <td>'.$responseArray['Results'][24]['Value'].'</td>
-                    </tr>
-                    <tr>
-                        <td class="td_tilte">WHEEL BASE (INCHES) FROM</td>
-                        <td>'.$responseArray['Results'][31]['Value'].'</td>
-                        <td class="td_tilte">FUEL TYPE-PRIMARY</td>
-                        <td>'.$responseArray['Results'][77]['Value'].'</td>
-                    </tr>
-                    <tr>
-                        <td class="td_tilte">SEAT BELT TYPE</td>
-                        <td>'.$responseArray['Results'][91]['Value'].'</td>
                         <td class="td_tilte">MAKE</td>
                         <td>'.$responseArray['Results'][7]['Value'].'</td>
                     </tr>
                     <tr>
                         <td class="td_tilte">MODEL</td>
                         <td>'.$responseArray['Results'][9]['Value'].'</td>
-                        <td class="td_tilte">PLANT CITY</td>
-                        <td>'.$responseArray['Results'][28]['Value'].'</td>
-                    </tr>
-                    <tr>
-                        <td class="td_tilte">VEHICLE TYPE</td>
-                        <td>'.$responseArray['Results'][14]['Value'].'</td>
-                        <td class="td_tilte">BODY CLASS</td>
-                        <td>'.$responseArray['Results'][23]['Value'].'</td>
-                    </tr>
-                    <tr>
-                        <td class="td_tilte">GROSS VEHICLE WEIGHT RATING FROM</td>
-                        <td>'.$responseArray['Results'][28]['Value'].'</td>
-                        <td class="td_tilte">ENGINE NUMBER OF CYLINDERS</td>
-                        <td>'.$responseArray['Results'][70]['Value'].'</td>
-                    </tr>
-                    <tr>
-                        <td class="td_tilte">DISPLACEMENT (CI)</td>
-                        <td>'.$responseArray['Results'][72]['Value'].'</td>
-                        <td class="td_tilte">ENGINE POWER (KW)</td>
-                        <td>'.$responseArray['Results'][76]['Value'].'</td>
                     </tr>
                 </tbody>
     </table>

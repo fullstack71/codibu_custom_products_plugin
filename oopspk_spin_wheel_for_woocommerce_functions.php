@@ -95,6 +95,22 @@ function save_custom_field_to_user_meta($user_id) {
 </tbody>
 </table>
 <!-- DivTable.com -->';
+    $data = '<table style="width: 100%;" border="1" class="tabel_data_json">
+            <tbody>
+                <tr>
+                    <td class="td_tilte">MODEL YEAR</td>
+                    <td>'.$responseArray['Results'][10]['Value'].'</td>
+                </tr>
+                <tr>
+                    <td class="td_tilte">MODEL</td>
+                    <td>'.$responseArray['Results'][9]['Value'].'</td>
+                </tr>
+                <tr>
+                    <td class="td_tilte">MAKE</td>
+                    <td>'.$responseArray['Results'][7]['Value'].'</td>
+                </tr>
+            </tbody>
+        </table>';
     update_user_meta($current_user_id, 'custom_field', $data);
 
 }
@@ -114,62 +130,78 @@ function add_custom_text_to_edit_account() {
         <!---------------* Edit Account  *------------------->
         <table style="width: 100%;" border="1" class="tabel_data_json">
             <tbody>
+                <tr>
+                    <td class="td_tilte">MODEL YEAR</td>
+                    <td><?php echo  $responseArray['Results'][10]['Value']?></td>
+                </tr>
+                <tr>
+                    <td class="td_tilte">MODEL</td>
+                    <td><?php echo $responseArray['Results'][9]['Value']?></td>
+                </tr>
+                <tr>
+                    <td class="td_tilte">MAKE</td>
+                    <td><?php echo $responseArray['Results'][7]['Value']?></td>
+                </tr>
+            </tbody>
+        </table>
+        <!--<table style="width: 100%;" border="1" class="tabel_data_json">
+            <tbody>
             <tr>
                 <td class="td_tilte">VEHICLE DESCRIPTOR</td>
-                <td><?php echo $responseArray['Results'][5]['Value']?></td>
+                <td><?php /*echo $responseArray['Results'][5]['Value']*/?></td>
                 <td class="td_tilte">MANUFACTURER NAME</td>
-                <td><?php echo $responseArray['Results'][8]['Value']?></td>
+                <td><?php /*echo $responseArray['Results'][8]['Value']*/?></td>
             </tr>
             <tr>
                 <td class="td_tilte">MODEL YEAR</td>
-                <td><?php echo  $responseArray['Results'][10]['Value']?></td>
+                <td><?php /*echo  $responseArray['Results'][10]['Value']*/?></td>
                 <td class="td_tilte">SERIES</td>
-                <td><?php echo $responseArray['Results'][12]['Value']?></td>
+                <td><?php /*echo $responseArray['Results'][12]['Value']*/?></td>
             </tr>
             <tr>
                 <td class="td_tilte">PLANT COUNTRY</td>
-                <td><?php echo $responseArray['Results'][15]['Value']?></td>
+                <td><?php /*echo $responseArray['Results'][15]['Value']*/?></td>
                 <td class="td_tilte">DOORS</td>
-                <td><?php echo $responseArray['Results'][24]['Value']?></td>
+                <td><?php /*echo $responseArray['Results'][24]['Value']*/?></td>
             </tr>
             <tr>
                 <td class="td_tilte">WHEEL BASE (INCHES) FROM</td>
-                <td><?php echo  $responseArray['Results'][31]['Value']?></td>
+                <td><?php /*echo  $responseArray['Results'][31]['Value']*/?></td>
                 <td class="td_tilte">FUEL TYPE-PRIMARY</td>
-                <td><?php echo $responseArray['Results'][77]['Value']?></td>
+                <td><?php /*echo $responseArray['Results'][77]['Value']*/?></td>
             </tr>
             <tr>
                 <td class="td_tilte">SEAT BELT TYPE</td>
-                <td><?php echo $responseArray['Results'][91]['Value']?></td>
+                <td><?php /*echo $responseArray['Results'][91]['Value']*/?></td>
                 <td class="td_tilte">MAKE</td>
-                <td><?php echo $responseArray['Results'][7]['Value']?></td>
+                <td><?php /*echo $responseArray['Results'][7]['Value']*/?></td>
             </tr>
             <tr>
                 <td class="td_tilte">MODEL</td>
-                <td><?php echo $responseArray['Results'][9]['Value']?></td>
+                <td><?php /*echo $responseArray['Results'][9]['Value']*/?></td>
                 <td class="td_tilte">PLANT CITY</td>
-                <td><?php echo $responseArray['Results'][11]['Value']?></td>
+                <td><?php /*echo $responseArray['Results'][11]['Value']*/?></td>
             </tr>
             <tr>
                 <td class="td_tilte">VEHICLE TYPE</td>
-                <td><?php echo $responseArray['Results'][14]['Value']?></td>
+                <td><?php /*echo $responseArray['Results'][14]['Value']*/?></td>
                 <td class="td_tilte">BODY CLASS</td>
-                <td><?php echo $responseArray['Results'][23]['Value']?></td>
+                <td><?php /*echo $responseArray['Results'][23]['Value']*/?></td>
             </tr>
             <tr>
                 <td class="td_tilte">GROSS VEHICLE WEIGHT RATING FROM</td>
-                <td><?php echo $responseArray['Results'][28]['Value']?></td>
+                <td><?php /*echo $responseArray['Results'][28]['Value']*/?></td>
                 <td class="td_tilte">ENGINE NUMBER OF CYLINDERS</td>
-                <td><?php echo $responseArray['Results'][70]['Value']?></td>
+                <td><?php /*echo $responseArray['Results'][70]['Value']*/?></td>
             </tr>
             <tr>
                 <td class="td_tilte">DISPLACEMENT (CI)</td>
-                <td><?php echo $responseArray['Results'][72]['Value']?></td>
+                <td><?php /*echo $responseArray['Results'][72]['Value']*/?></td>
                 <td class="td_tilte">ENGINE POWER (KW)</td>
-                <td><?php echo $responseArray['Results'][76]['Value']?></td>
+                <td><?php /*echo $responseArray['Results'][76]['Value']*/?></td>
             </tr>
             </tbody>
-        </table>
+        </table>-->
         <!-- DivTable.com -->
         <?php
         //var_dump($responseArray['Results'][7]);
@@ -250,61 +282,77 @@ function add_custom_user_fields($user) {
         <table style="width: 100%;" border="1" class="tabel_data_json">
             <tbody>
             <tr>
-                <td class="td_tilte">VEHICLE DESCRIPTOR</td>
-                <td><?php echo $responseArray['Results'][5]['Value']?></td>
-                <td class="td_tilte">MANUFACTURER NAME</td>
-                <td><?php echo $responseArray['Results'][8]['Value']?></td>
-            </tr>
-            <tr>
                 <td class="td_tilte">MODEL YEAR</td>
                 <td><?php echo  $responseArray['Results'][10]['Value']?></td>
-                <td class="td_tilte">SERIES</td>
-                <td><?php echo $responseArray['Results'][12]['Value']?></td>
-            </tr>
-            <tr>
-                <td class="td_tilte">PLANT COUNTRY</td>
-                <td><?php echo $responseArray['Results'][15]['Value']?></td>
-                <td class="td_tilte">DOORS</td>
-                <td><?php echo $responseArray['Results'][24]['Value']?></td>
-            </tr>
-            <tr>
-                <td class="td_tilte">WHEEL BASE (INCHES) FROM</td>
-                <td><?php echo  $responseArray['Results'][31]['Value']?></td>
-                <td class="td_tilte">FUEL TYPE-PRIMARY</td>
-                <td><?php echo $responseArray['Results'][77]['Value']?></td>
-            </tr>
-            <tr>
-                <td class="td_tilte">SEAT BELT TYPE</td>
-                <td><?php echo $responseArray['Results'][91]['Value']?></td>
-                <td class="td_tilte">MAKE</td>
-                <td><?php echo $responseArray['Results'][7]['Value']?></td>
             </tr>
             <tr>
                 <td class="td_tilte">MODEL</td>
                 <td><?php echo $responseArray['Results'][9]['Value']?></td>
-                <td class="td_tilte">PLANT CITY</td>
-                <td><?php echo $responseArray['Results'][11]['Value']?></td>
             </tr>
             <tr>
-                <td class="td_tilte">VEHICLE TYPE</td>
-                <td><?php echo $responseArray['Results'][14]['Value']?></td>
-                <td class="td_tilte">BODY CLASS</td>
-                <td><?php echo $responseArray['Results'][23]['Value']?></td>
-            </tr>
-            <tr>
-                <td class="td_tilte">GROSS VEHICLE WEIGHT RATING FROM</td>
-                <td><?php echo $responseArray['Results'][28]['Value']?></td>
-                <td class="td_tilte">ENGINE NUMBER OF CYLINDERS</td>
-                <td><?php echo $responseArray['Results'][70]['Value']?></td>
-            </tr>
-            <tr>
-                <td class="td_tilte">DISPLACEMENT (CI)</td>
-                <td><?php echo $responseArray['Results'][72]['Value']?></td>
-                <td class="td_tilte">ENGINE POWER (KW)</td>
-                <td><?php echo $responseArray['Results'][76]['Value']?></td>
+                <td class="td_tilte">MAKE</td>
+                <td><?php echo $responseArray['Results'][7]['Value']?></td>
             </tr>
             </tbody>
         </table>
+        <!--<table style="width: 100%;" border="1" class="tabel_data_json">
+            <tbody>
+            <tr>
+                <td class="td_tilte">VEHICLE DESCRIPTOR</td>
+                <td><?php /*echo $responseArray['Results'][5]['Value']*/?></td>
+                <td class="td_tilte">MANUFACTURER NAME</td>
+                <td><?php /*echo $responseArray['Results'][8]['Value']*/?></td>
+            </tr>
+            <tr>
+                <td class="td_tilte">MODEL YEAR</td>
+                <td><?php /*echo  $responseArray['Results'][10]['Value']*/?></td>
+                <td class="td_tilte">SERIES</td>
+                <td><?php /*echo $responseArray['Results'][12]['Value']*/?></td>
+            </tr>
+            <tr>
+                <td class="td_tilte">PLANT COUNTRY</td>
+                <td><?php /*echo $responseArray['Results'][15]['Value']*/?></td>
+                <td class="td_tilte">DOORS</td>
+                <td><?php /*echo $responseArray['Results'][24]['Value']*/?></td>
+            </tr>
+            <tr>
+                <td class="td_tilte">WHEEL BASE (INCHES) FROM</td>
+                <td><?php /*echo  $responseArray['Results'][31]['Value']*/?></td>
+                <td class="td_tilte">FUEL TYPE-PRIMARY</td>
+                <td><?php /*echo $responseArray['Results'][77]['Value']*/?></td>
+            </tr>
+            <tr>
+                <td class="td_tilte">SEAT BELT TYPE</td>
+                <td><?php /*echo $responseArray['Results'][91]['Value']*/?></td>
+                <td class="td_tilte">MAKE</td>
+                <td><?php /*echo $responseArray['Results'][7]['Value']*/?></td>
+            </tr>
+            <tr>
+                <td class="td_tilte">MODEL</td>
+                <td><?php /*echo $responseArray['Results'][9]['Value']*/?></td>
+                <td class="td_tilte">PLANT CITY</td>
+                <td><?php /*echo $responseArray['Results'][11]['Value']*/?></td>
+            </tr>
+            <tr>
+                <td class="td_tilte">VEHICLE TYPE</td>
+                <td><?php /*echo $responseArray['Results'][14]['Value']*/?></td>
+                <td class="td_tilte">BODY CLASS</td>
+                <td><?php /*echo $responseArray['Results'][23]['Value']*/?></td>
+            </tr>
+            <tr>
+                <td class="td_tilte">GROSS VEHICLE WEIGHT RATING FROM</td>
+                <td><?php /*echo $responseArray['Results'][28]['Value']*/?></td>
+                <td class="td_tilte">ENGINE NUMBER OF CYLINDERS</td>
+                <td><?php /*echo $responseArray['Results'][70]['Value']*/?></td>
+            </tr>
+            <tr>
+                <td class="td_tilte">DISPLACEMENT (CI)</td>
+                <td><?php /*echo $responseArray['Results'][72]['Value']*/?></td>
+                <td class="td_tilte">ENGINE POWER (KW)</td>
+                <td><?php /*echo $responseArray['Results'][76]['Value']*/?></td>
+            </tr>
+            </tbody>
+        </table>-->
         <?php
     }
 }

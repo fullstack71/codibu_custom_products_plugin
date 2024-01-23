@@ -5,7 +5,7 @@ function codibu_wc_pip_before_body($type, $action, $document, $order){
     if(!$order->id){
         echo '<h3>Car Info</h3>';
         echo '<h5>Vin# vin number<h5>';
-        echo '<table style="width: 213%" border="1" class="tabel_data_json">
+        /*echo '<table style="width: 213%" border="1" class="tabel_data_json">
         <tbody>
             <tr>
                 <td class="td_tilte">VEHICLE DESCRIPTOR</td>
@@ -59,6 +59,22 @@ function codibu_wc_pip_before_body($type, $action, $document, $order){
                 <td class="td_tilte">DISPLACEMENT (CI)</td>
                 <td>null</td>
                 <td class="td_tilte">ENGINE POWER (KW)</td>
+                <td>null</td>
+            </tr>
+        </tbody>
+    </table>';*/
+        echo '<table style="width: 213%" border="1" class="tabel_data_json">
+        <tbody>
+            <tr>
+                <td class="td_tilte">MODEL YEAR</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td class="td_tilte">MODEL</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td class="td_tilte">MAKE</td>
                 <td>null</td>
             </tr>
         </tbody>

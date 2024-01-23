@@ -66,58 +66,16 @@ if ($vin_numbers){
                             <table style="width: `+width+`%" border="1" class="tabel_data_json">
                                 <tbody>
                                     <tr>
-                                        <td class="td_tilte">VEHICLE DESCRIPTOR</td>
-                                        <td>`+obj.Results[5].Value+`</td>
-                                        <td class="td_tilte">MANUFACTURER NAME</td>
-                                        <td>`+obj.Results[8].Value+`</td>
-                                    </tr>
-                                    <tr>
                                         <td class="td_tilte">MODEL YEAR</td>
                                         <td>`+obj.Results[10].Value+`</td>
-                                        <td class="td_tilte">SERIES</td>
-                                        <td>`+obj.Results[12].Value+`</td>
                                     </tr>
                                     <tr>
-                                        <td class="td_tilte">PLANT COUNTRY</td>
-                                        <td>`+obj.Results[15].Value+`</td>
-                                        <td class="td_tilte">DOORS</td>
-                                        <td>`+obj.Results[24].Value+`</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="td_tilte">WHEEL BASE (INCHES) FROM</td>
-                                        <td>`+obj.Results[31].Value+`</td>
-                                        <td class="td_tilte">FUEL TYPE-PRIMARY</td>
-                                        <td>`+obj.Results[77].Value+`</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="td_tilte">SEAT BELT TYPE</td>
-                                        <td>`+obj.Results[91].Value+`</td>
                                         <td class="td_tilte">MAKE</td>
                                         <td>`+obj.Results[7].Value+`</td>
                                     </tr>
                                     <tr>
                                         <td class="td_tilte">MODEL</td>
                                         <td>`+obj.Results[9].Value+`</td>
-                                        <td class="td_tilte">PLANT CITY</td>
-                                        <td>`+obj.Results[28].Value+`</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="td_tilte">VEHICLE TYPE</td>
-                                        <td>`+obj.Results[14].Value+`</td>
-                                        <td class="td_tilte">BODY CLASS</td>
-                                        <td>`+obj.Results[23].Value+`</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="td_tilte">GROSS VEHICLE WEIGHT RATING FROM</td>
-                                        <td>`+obj.Results[28].Value+`</td>
-                                        <td class="td_tilte">ENGINE NUMBER OF CYLINDERS</td>
-                                        <td>`+obj.Results[70].Value+`</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="td_tilte">DISPLACEMENT (CI)</td>
-                                        <td>`+obj.Results[72].Value+`</td>
-                                        <td class="td_tilte">ENGINE POWER (KW)</td>
-                                        <td>`+obj.Results[76].Value+`</td>
                                     </tr>
                                 </tbody>
                             </table>
