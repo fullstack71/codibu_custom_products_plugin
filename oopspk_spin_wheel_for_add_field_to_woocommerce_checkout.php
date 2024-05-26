@@ -12,23 +12,23 @@ function add_this_script_footer(){
             if (vin_numbers.length != 0) {
                 $('#selectVin').attr('disabled','disabled');
                 $('#add_vin_number_field').hide();
-                $('#binNumber').val('select_vin');
+                $('#vinNumber').val('select_vin');
                 $('#selectVin').on('click', function () {
                     $('#selectVin').attr('disabled','disabled');
                     $('#addVin').removeAttr('disabled');
                     $('#add_vin_number_field').hide();
                     $('#select_vin_number_field').show();
-                    $('#binNumber').val('select_vin');
+                    $('#vinNumber').val('select_vin');
                 });
             } else {
-                $('#binNumber').val('add_vin');
+                $('#vinNumber').val('add_vin');
             }
             $('#addVin').on('click', function () {
                 $('#addVin').attr('disabled','disabled');
                 $('#selectVin').removeAttr('disabled');
                 $('#select_vin_number_field').hide();
                 $('#add_vin_number_field').show();
-                $('#binNumber').val('add_vin');
+                $('#vinNumber').val('add_vin');
             });
         });
     </script>
@@ -67,11 +67,11 @@ function add_checkout_car_vin_number($checkout){
     $vin_numbers = $vin_numbers ? unserialize($vin_numbers) : [];
     echo '<div class="box"><p class="form-row">';
     if($vin_numbers != []) {
-        echo '<input type="button" id="selectVin" class="woocommerce-Button button" name="select_vin" value="Select Bin Number">
+        echo '<input type="button" id="selectVin" class="woocommerce-Button button" name="select_vin" value="Select vin Number">
         <span style="margin:0px 10px">OR</span>';
     }
-    echo '<input type="button" id="addVin" class="woocommerce-Button button" name="add_vin" value="Add Bin Number">
-    <input type="hidden" id="binNumber" name="bin_number">
+    echo '<input type="button" id="addVin" class="woocommerce-Button button" name="add_vin" value="Add vin Number">
+    <input type="hidden" id="vinNumber" name="vin_number">
     </p>';
     woocommerce_form_field('add_vin_number', array(
         'type'          => 'text',
@@ -101,9 +101,9 @@ add_action('woocommerce_checkout_process', 'validate_checkout_car_vin_number');
 function validate_checkout_car_vin_number()
 {
 // Show an error message if the field is not set.
-    if ($_POST['bin_number'] == "add_vin" && empty($_POST['add_vin_number'])) {
+    if ($_POST['vin_number'] == "add_vin" && empty($_POST['add_vin_number'])) {
         wc_add_notice(__('<strong>Vin Number</strong> is a required field.'), 'error');
-    } elseif($_POST['bin_number'] == "add_vin" && !empty($_POST['add_vin_number'])) {
+    } elseif($_POST['vin_number'] == "add_vin" && !empty($_POST['add_vin_number'])) {
         $vin = $_POST['add_vin_number'];
     } else {
         $vin = $_POST['select_vin_number'];
@@ -155,7 +155,7 @@ function validate_checkout_car_vin_number()
  */
 add_action('woocommerce_checkout_update_order_meta', 'store_checkout_car_vin_number');
 function store_checkout_car_vin_number($order_id){
-    if ($_POST['bin_number'] == "add_vin"){
+    if ($_POST['vin_number'] == "add_vin"){
         if (!empty($_POST['add_vin_number'])) {
             $vin_numbers = get_user_meta(get_current_user_id(), 'car_vin_numbers', true) ?? null;
             $vin_numbers_array = $vin_numbers ? unserialize($vin_numbers) : [];
