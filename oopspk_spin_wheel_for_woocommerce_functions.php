@@ -7,6 +7,7 @@ defined('ABSPATH') || die ("You can't access this file directyly !");
 function oopspk_woocommerce_modify_pro_management_style()
 {
     wp_enqueue_style('oopspk_woocommerce_modify_pro_managemen_style',plugins_url('assets/css/frontend_style_css.css',__FILE__));
+    wp_enqueue_script('custom-js', plugin_dir_url(__FILE__) . 'fixed_bookly_plugin_issues.js', array(), '1.0', true);
 
 }
 add_action('wp_enqueue_scripts', 'oopspk_woocommerce_modify_pro_management_style', PHP_INT_MAX);
