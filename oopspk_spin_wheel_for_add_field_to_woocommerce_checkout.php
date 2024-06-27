@@ -122,27 +122,29 @@ function validate_checkout_car_vin_number()
                 foreach ( $items as $key => $item ) {
                     $data_store = WC_Data_Store::load( 'order-item' );
                     $metadata = $data_store->get_metadata( $item->order_item_id, 'bookly', true );
-                    $customer_appointment = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."bookly_customer_appointments WHERE id = ".$metadata["ca_ids"][0]);
-                    $appointment = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."bookly_appointments WHERE id = ".$customer_appointment[0]->appointment_id);
+					if (is_array($metadata) && isset($metadata['ca_ids']) && is_array($metadata['ca_ids']) && !empty($metadata['ca_ids'])) {
+						$customer_appointment = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."bookly_customer_appointments WHERE id = ".$metadata["ca_ids"][0]);
+						$appointment = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."bookly_appointments WHERE id = ".$customer_appointment[0]->appointment_id);
 
-                    $currentusermaxdate = $appointment[0]->start_date;
-                    $nextalloweddateShow = date('Y-m-d', strtotime("+3 months", strtotime($currentusermaxdate)));
+						$currentusermaxdate = $appointment[0]->start_date;
+						$nextalloweddateShow = date('Y-m-d', strtotime("+3 months", strtotime($currentusermaxdate)));
 
-                    $nextalloweddate = strtotime($nextalloweddateShow);
-                    $cart_items = WC()->cart->get_cart();
-                    foreach ($cart_items as $bookly => $values) {
-                        $serviceId = $values['bookly']['items'][0]['service_id'];
-                        $requestingDate = $values['bookly']['slots'][0][2];
-                        $requestingDate = strtotime($requestingDate);
-                        if($nextalloweddate > $requestingDate)
-                        {
-                            $sql34 = "SELECT title FROM ".$wpdb->prefix."bookly_services WHERE id='".$serviceId."'";
-                            $serviceTitle = $wpdb->get_results( $sql34, ARRAY_A);
-                            wc_add_notice( sprintf( __( 'You are not allowed to buy more than 1 pieces of VIN with Name <strong>'.$serviceTitle[0]['title'].'</strong> in 3 months. ', 'woocommerce' ), $limit, $specific_product_id_name ), 'error' );
-                            break 3;
-                        }
+						$nextalloweddate = strtotime($nextalloweddateShow);
+						$cart_items = WC()->cart->get_cart();
+						foreach ($cart_items as $bookly => $values) {
+							$serviceId = $values['bookly']['items'][0]['service_id'];
+							$requestingDate = $values['bookly']['slots'][0][2];
+							$requestingDate = strtotime($requestingDate);
+							if($nextalloweddate > $requestingDate)
+							{
+								$sql34 = "SELECT title FROM ".$wpdb->prefix."bookly_services WHERE id='".$serviceId."'";
+								$serviceTitle = $wpdb->get_results( $sql34, ARRAY_A);
+								wc_add_notice( sprintf( __( 'You are not allowed to buy more than 1 pieces of VIN with Name <strong>'.$serviceTitle[0]['title'].'</strong> in 3 months. ', 'woocommerce' ), $limit, $specific_product_id_name ), 'error' );
+								break 3;
+							}
 
-                    }
+						}
+					}
                 }
             }
 
