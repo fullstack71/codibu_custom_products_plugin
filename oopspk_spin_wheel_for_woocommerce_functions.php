@@ -363,7 +363,8 @@ add_action('edit_user_profile', 'add_custom_user_fields');
 // Save custom fields data
 function save_custom_user_fields($user_id) {
     if (current_user_can('edit_user', $user_id)) {
-        update_user_meta($user_id, 'custom_field', sanitize_text_field($_POST['custom_field']));
+         $custom_field = $_POST['custom_field']  ?? null;
+        update_user_meta($user_id, 'custom_field', sanitize_text_field($custom_field));
     }
 }
 add_action('personal_options_update', 'save_custom_user_fields');
