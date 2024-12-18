@@ -54,7 +54,7 @@ if ($vin_numbers){
                 carInfo(this.value);
             });
             function carInfo(car_vin_number) {
-                var width = <?php echo ($_GET['post'] != null && $_GET['action'] == "edit") ? '213' : '100'; ?>;
+                var width = <?php echo (isset($_GET['post']) && $_GET['post'] != null && isset($_GET['action']) && $_GET['action'] == "edit") ? '213' : '100'; ?>;
                 jQuery.ajax({
                     type: "get",
                     dataType: "json",
