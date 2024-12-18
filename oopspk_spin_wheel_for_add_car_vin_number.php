@@ -124,8 +124,8 @@ function userCarVinNumberSave($userId) {
     $carVinNumbersArray = unserialize($carVinNumbers) ? unserialize($carVinNumbers) : [];
     $current_hook = current_filter();
     if($current_hook != 'woocommerce_update_customer') {
-        $vin_number_update =$_POST['vin_number_update'] != NULL ? $_POST['vin_number_update'] : [];
-        $vin_number_add = $_POST['vin_number_add'] != NULL ? $_POST['vin_number_add'] : [];
+        $vin_number_update = isset($_POST['vin_number_update']) ? $_POST['vin_number_update'] : [];
+        $vin_number_add = isset($_POST['vin_number_add']) ? $_POST['vin_number_add'] : [];
         $array = array_merge($vin_number_update,$vin_number_add);
         $newArray = array_map(function($itam, $key) {
             return [
