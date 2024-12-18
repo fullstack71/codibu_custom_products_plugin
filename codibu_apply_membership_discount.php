@@ -99,7 +99,7 @@ function codibu_trigger_js_function() {
 add_action('wp_ajax_update_cart_product_price', 'update_cart_product_price_callback');
 
 function update_cart_product_price_callback() {
-    $vin_number = $_POST['vin_number'];
+    $vin_number = $_POST['vin_number']  ?? null;
 
     // Set option data
     update_option('checkout_car_vin_number', $vin_number);
